@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beauty Glanz — Nagelstudio & Kosmetik von Meisterin Anna</title>
+<meta name="description" content="Beauty Glanz — Professionelle Maniküre, Pediküre, Waxing, Permanent Make-up und mehr von Meisterin Anna.">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<script>
+tailwind.config={theme:{extend:{colors:{cream:'#F5EFE8',espresso:'#1C1410',rose:'#C4826A','rose-light':'#d9a895','rose-dark':'#a8694f','cream-dark':'#E8DFD4'},fontFamily:{heading:['"Playfair Display"','serif'],body:['"DM Sans"','sans-serif']}}}};
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#F5EFE8;color:#1C1410;overflow-x:hidden}
+h1,h2,h3,h4,h5,h6{font-family:'Playfair Display',serif}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.stagger-1{transition-delay:.1s}.stagger-2{transition-delay:.2s}.stagger-3{transition-delay:.3s}.stagger-4{transition-delay:.4s}
+.stagger-5{transition-delay:.5s}.stagger-6{transition-delay:.6s}.stagger-7{transition-delay:.7s}.stagger-8{transition-delay:.8s}
+.accordion-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.22,1,.36,1)}
+.accordion-body.open{grid-template-rows:1fr}
+.accordion-body>div{overflow:hidden}
+.accordion-icon{transition:transform .35s ease}
+.accordion-icon.rotated{transform:rotate(45deg)}
+.hover-lift{transition:transform .35s ease,box-shadow .35s ease}
+.hover-lift:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(28,20,16,.10)}
+.gallery-item{cursor:pointer;transition:transform .4s ease,box-shadow .4s ease}
+.gallery-item:hover{transform:scale(1.03) translateY(-4px);box-shadow:0 20px 50px rgba(28,20,16,.12)}
+.cat-pill{transition:all .35s ease;border:1px solid #E8DFD4}
+.cat-pill.active{background:#1C1410;color:#F5EFE8;border-color:#1C1410}
+.cat-pill:not(.active):hover{border-color:#C4826A;color:#C4826A}
+.carousel-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:8px}
+.carousel-track::-webkit-scrollbar{display:none}
+.carousel-card{scroll-snap-align:start;flex-shrink:0}
+.cat-panel{display:none;opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+.cat-panel.active{display:block;opacity:1;transform:translateY(0)}
+.carousel-arrow{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);border:1px solid #E8DFD4;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s ease;box-shadow:0 2px 12px rgba(28,20,16,.08)}
+.carousel-arrow:hover{background:#1C1410;color:#F5EFE8;border-color:#1C1410}
+.lightbox{position:fixed;inset:0;z-index:999;background:rgba(28,20,16,.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.lightbox.active{opacity:1;pointer-events:all}
+.lightbox-content{max-width:90vw;max-height:85vh;border-radius:16px;transform:scale(.9);transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.lightbox.active .lightbox-content{transform:scale(1)}
+.sub-tab{position:relative;padding-bottom:4px}
+.sub-tab::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:#C4826A;transition:width .3s ease,left .3s ease}
+.sub-tab.active::after{width:100%;left:0}
+.lang-toggle{backdrop-filter:blur(12px);background:rgba(28,20,16,.7)}
+.star{color:#C4826A}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#F5EFE8}::-webkit-scrollbar-thumb{background:#C4826A;border-radius:3px}
+.hero-shape{position:relative;background:linear-gradient(135deg,rgba(196,166,106,.08) 0%,rgba(212,186,140,.05) 40%,rgba(245,239,232,.02) 100%);border-radius:40% 60% 55% 45%/55% 40% 60% 45%;animation:morph 8s ease-in-out infinite;display:flex;align-items:center;justify-content:center}
+.hero-shape img{width:95%;height:auto;object-fit:contain;animation:goldShimmer 4s ease-in-out infinite}
+@keyframes morph{0%,100%{border-radius:40% 60% 55% 45%/55% 40% 60% 45%}25%{border-radius:55% 45% 40% 60%/40% 60% 45% 55%}50%{border-radius:45% 55% 60% 40%/60% 45% 55% 40%}75%{border-radius:60% 40% 45% 55%/45% 55% 40% 60%}}
+@keyframes goldShimmer{0%,100%{filter:brightness(1) drop-shadow(0 4px 20px rgba(196,130,106,.15))}50%{filter:brightness(1.08) sepia(.12) saturate(1.8) hue-rotate(335deg) drop-shadow(0 8px 30px rgba(196,130,106,.3))}}
+@keyframes glowPulse{0%,100%{opacity:.4;transform:translateX(-50%) scale(1)}50%{opacity:.7;transform:translateX(-50%) scale(1.2)}}
+@keyframes logoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+/* Section divider */
+.section-divider{padding:20px 0;margin:0;display:flex;justify-content:center}
+.section-divider::before{content:'';display:block;width:80%;max-width:500px;height:1px;background:linear-gradient(90deg,transparent,#C4826A40,transparent)}
+.section-divider span{display:none}
+/* Language switcher */
+.lang-switcher{position:fixed;bottom:24px;right:24px;z-index:50}
+.lang-current{display:flex;align-items:center;gap:6px;background:rgba(28,20,16,.08);backdrop-filter:blur(10px);border:1px solid #C4826A40;border-radius:12px;padding:8px 14px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:.08em;color:#1C1410;cursor:pointer;transition:all .25s}
+.lang-current:hover{border-color:#C4826A;background:rgba(28,20,16,.12)}
+.lang-current svg{width:10px;height:6px;transition:transform .25s}
+.lang-switcher.open .lang-current svg{transform:rotate(180deg)}
+.lang-dropdown{position:absolute;bottom:calc(100% + 6px);right:0;background:rgba(245,239,232,.98);backdrop-filter:blur(20px);border:1px solid #C4826A40;border-radius:12px;overflow:hidden;opacity:0;transform:translateY(8px);pointer-events:none;transition:all .25s;min-width:100%}
+.lang-switcher.open .lang-dropdown{opacity:1;transform:translateY(0);pointer-events:all}
+.lang-option{padding:10px 16px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:12px;letter-spacing:.08em;color:#1C1410;cursor:pointer;transition:background .2s,color .2s}
+.lang-option:hover{background:rgba(196,130,106,.12);color:#C4826A}
+.lang-option.active{color:#C4826A;font-weight:700}
+/* Mobile overlay */
+.mobile-overlay{position:fixed;inset:0;z-index:45;background:rgba(245,239,232,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.mobile-overlay.open{opacity:1;pointer-events:all}
+.mobile-overlay a{font-family:'Playfair Display',serif;font-size:24px;color:#1C1410;transition:color .2s}
+.mobile-overlay a:hover{color:#C4826A}
+.mobile-overlay .close-btn{position:absolute;top:20px;right:24px;font-size:28px;color:#1C1410;cursor:pointer;background:none;border:none;line-height:1}
+.cta-btn{position:relative;overflow:hidden;z-index:1;transition:color .4s ease,box-shadow .4s ease}
+.cta-btn::before{content:'';position:absolute;inset:0;background:#1C1410;transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.22,1,.36,1);z-index:-1}
+.cta-btn:hover::before{transform:scaleX(1);transform-origin:left}
+.cta-btn:hover{color:#F5EFE8;box-shadow:0 8px 30px rgba(28,20,16,.2)}
+.form-input{border:1px solid #E8DFD4;background:transparent;transition:border-color .3s ease,box-shadow .3s ease}
+.form-input:focus{border-color:#C4826A;box-shadow:0 0 0 3px rgba(196,130,106,.15);outline:none}
+/* Styled selects */
+select.form-input{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C4826A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer}
+select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE SWITCHER -->
+<div class="lang-switcher" id="langSwitcher">
+  <div class="lang-dropdown" id="langDropdown">
+    <div class="lang-option active" data-lang="de" onclick="selectLang('de')">Deutsch</div>
+    <div class="lang-option" data-lang="ru" onclick="selectLang('ru')">Русский</div>
+    <div class="lang-option" data-lang="en" onclick="selectLang('en')">English</div>
+  </div>
+  <div class="lang-current" onclick="document.getElementById('langSwitcher').classList.toggle('open')">
+    <span id="langLabel">DE</span>
+    <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="fixed top-0 left-0 w-full z-40 bg-cream/80 backdrop-blur-md border-b border-cream-dark/40">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+    <a href="#"><img src="logo.png" alt="Beauty Glanz" class="h-10 md:h-12"></a>
+    <nav class="hidden md:flex gap-8 font-body text-sm tracking-wide">
+      <a href="#about" class="hover:text-rose transition-colors" data-de="Über mich" data-ru="Обо мне" data-en="About">Über mich</a>
+      <a href="#services" class="hover:text-rose transition-colors" data-de="Leistungen" data-ru="Услуги" data-en="Services">Leistungen</a>
+      <a href="#gallery" class="hover:text-rose transition-colors" data-de="Galerie" data-ru="Галерея" data-en="Gallery">Galerie</a>
+      <a href="#reviews" class="hover:text-rose transition-colors" data-de="Bewertungen" data-ru="Отзывы" data-en="Reviews">Bewertungen</a>
+      <a href="#booking" class="hover:text-rose transition-colors" data-de="Buchung" data-ru="Запись" data-en="Booking">Buchung</a>
+      <a href="#contact" class="hover:text-rose transition-colors" data-de="Kontakt" data-ru="Контакт" data-en="Contact">Kontakt</a>
+    </nav>
+    <a href="#booking" class="hidden md:inline-block border border-espresso text-espresso text-xs font-bold tracking-widest uppercase px-5 py-2 rounded-full hover:bg-espresso hover:text-cream transition-all" data-de="Termin buchen" data-ru="Записаться" data-en="Book now">Termin buchen</a>
+    <button class="md:hidden flex flex-col gap-1.5" onclick="document.getElementById('mobileOverlay').classList.add('open')">
+      <span class="w-6 h-0.5 bg-espresso"></span><span class="w-6 h-0.5 bg-espresso"></span><span class="w-4 h-0.5 bg-espresso"></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE OVERLAY MENU -->
+<div id="mobileOverlay" class="mobile-overlay">
+  <button class="close-btn" onclick="document.getElementById('mobileOverlay').classList.remove('open')">&times;</button>
+  <a href="#about" onclick="closeMobile()" data-de="Über mich" data-ru="Обо мне" data-en="About">Über mich</a>
+  <a href="#services" onclick="closeMobile()" data-de="Leistungen" data-ru="Услуги" data-en="Services">Leistungen</a>
+  <a href="#gallery" onclick="closeMobile()" data-de="Galerie" data-ru="Галерея" data-en="Gallery">Galerie</a>
+  <a href="#reviews" onclick="closeMobile()" data-de="Bewertungen" data-ru="Отзывы" data-en="Reviews">Bewertungen</a>
+  <a href="#booking" onclick="closeMobile()" data-de="Buchung" data-ru="Запись" data-en="Booking">Buchung</a>
+  <a href="#contact" onclick="closeMobile()" data-de="Kontakt" data-ru="Контакт" data-en="Contact">Kontakt</a>
+  <a href="#booking" onclick="closeMobile()" class="mt-4 border-2 border-espresso text-espresso font-body font-bold text-sm tracking-widest uppercase px-8 py-3.5 rounded-full" style="font-family:'DM Sans',sans-serif;font-size:13px" data-de="Termin buchen" data-ru="Записаться" data-en="Book now">Termin buchen</a>
+</div>
+
+<!-- HERO -->
+<section class="min-h-screen flex items-center pt-20 pb-16 md:pb-0 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+    <!-- On mobile: shape first (order-1), text second (order-2). On md+: text left, shape right -->
+    <div class="order-2 md:order-1 space-y-6">
+      <p class="reveal font-body text-rose tracking-[0.2em] uppercase text-xs font-bold" data-de="Nagelstudio & Kosmetik" data-ru="Ногтевая студия и косметология" data-en="Nail Studio & Beauty">Nagelstudio & Kosmetik</p>
+      <h1 class="reveal stagger-1 font-heading text-5xl md:text-7xl leading-[1.1] text-espresso">Beauty<br><span class="text-rose italic">Glanz</span></h1>
+      <p class="reveal stagger-2 font-body text-espresso/70 text-lg max-w-md leading-relaxed" data-de="Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit." data-ru="Профессиональный уход за красотой от мастера Анны — ваш путь к натуральной элегантности и вневременной красоте." data-en="Professional beauty care by master Anna — your path to natural elegance and timeless beauty.">Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit.</p>
+      <a href="#contact" class="reveal stagger-3 cta-btn inline-block border-2 border-espresso text-espresso font-body font-bold text-sm tracking-widest uppercase px-8 py-3.5 rounded-full" data-de="Termin vereinbaren" data-ru="Записаться на приём" data-en="Book appointment">Termin vereinbaren</a>
+    </div>
+    <div class="order-1 md:order-2 reveal-right flex flex-col items-center md:justify-center py-4 md:py-0">
+      <img src="logo.png" alt="Beauty Glanz" class="w-[75vw] h-auto md:w-[540px]" style="animation:logoPulse 4s ease-in-out infinite">
+      <div class="w-[70%] h-[10px] mt-1 rounded-full" style="background:radial-gradient(ellipse, rgba(28,20,16,0.25) 0%, rgba(28,20,16,0.08) 60%, transparent 100%);filter:blur(14px)"></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦</span></div>
+
+<!-- INTRO -->
+<section class="py-20">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <h2 class="reveal font-heading text-4xl md:text-5xl text-rose mb-6 leading-snug" data-de="Schönheit, die von innen strahlt" data-ru="Красота, которая сияет изнутри" data-en="Beauty that radiates from within">Schönheit, die von innen strahlt</h2>
+    <p class="reveal stagger-1 font-body text-espresso/55 text-base leading-relaxed max-w-xl mx-auto" data-de="Im Herzen Kassels verwandeln wir Ihre Schönheitswünsche in Realität. Unser Studio bietet Ihnen eine Oase der Ruhe, in der Präzision und Kreativität aufeinandertreffen — für Ergebnisse, die begeistern." data-ru="В самом сердце Касселя мы воплощаем ваши мечты о красоте в реальность. Наша студия — оазис спокойствия, где точность встречается с креативностью — для результатов, которые восхищают." data-en="In the heart of Kassel, we turn your beauty dreams into reality. Our studio offers you an oasis of calm where precision meets creativity — for results that inspire.">Im Herzen Kassels verwandeln wir Ihre Schönheitswünsche in Realität. Unser Studio bietet Ihnen eine Oase der Ruhe, in der Präzision und Kreativität aufeinandertreffen — für Ergebnisse, die begeistern.</p>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦</span></div>
+
+<!-- ABOUT -->
+<section id="about" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-[280px_1fr] gap-14 items-center">
+    <div class="reveal-left flex justify-center">
+      <img src="anna.jpg" alt="Anna" class="w-64 h-80 object-cover rounded-3xl shadow-lg border border-cream-dark/30">
+    </div>
+    <div class="space-y-6">
+      <p class="reveal font-body text-rose tracking-[0.2em] uppercase text-xs font-bold" data-de="Über mich" data-ru="Обо мне" data-en="About me">Über mich</p>
+      <h2 class="reveal stagger-1 font-heading text-4xl md:text-5xl text-espresso" data-de="Meisterin Anna" data-ru="Мастер Анна" data-en="Master Anna">Meisterin Anna</h2>
+      <p class="reveal stagger-2 font-body text-espresso/70 leading-relaxed" data-de="Mit über 14 Jahren Erfahrung in der Schönheitsbranche bringe ich Leidenschaft und Präzision in jede Behandlung. Mein Ziel ist es, Ihre natürliche Schönheit zu unterstreichen und Ihnen ein Erlebnis zu schenken, das Sie strahlen lässt." data-ru="С более чем 14-летним опытом в индустрии красоты я привношу страсть и точность в каждую процедуру. Моя цель — подчеркнуть вашу естественную красоту и подарить вам опыт, который заставит вас сиять." data-en="With over 14 years of experience in the beauty industry, I bring passion and precision to every treatment. My goal is to highlight your natural beauty and give you an experience that makes you glow.">Mit über 14 Jahren Erfahrung in der Schönheitsbranche bringe ich Leidenschaft und Präzision in jede Behandlung. Mein Ziel ist es, Ihre natürliche Schönheit zu unterstreichen und Ihnen ein Erlebnis zu schenken, das Sie strahlen lässt.</p>
+      <div class="reveal stagger-3 grid grid-cols-3 gap-4 pt-4">
+        <div class="text-center p-4 rounded-2xl bg-cream"><p class="font-heading text-3xl text-rose">14+</p><p class="font-body text-xs text-espresso/60 mt-1" data-de="Jahre Erfahrung" data-ru="лет опыта" data-en="years experience">Jahre Erfahrung</p></div>
+        <div class="text-center p-4 rounded-2xl bg-cream"><p class="font-heading text-3xl text-rose">5K+</p><p class="font-body text-xs text-espresso/60 mt-1" data-de="Zufriedene Kunden" data-ru="Довольных клиентов" data-en="Happy clients">Zufriedene Kunden</p></div>
+        <div class="text-center p-4 rounded-2xl bg-cream"><p class="font-heading text-3xl text-rose">20+</p><p class="font-body text-xs text-espresso/60 mt-1" data-de="Behandlungen" data-ru="Процедур" data-en="Treatments">Behandlungen</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦</span></div>
+
+<!-- SERVICES & PRICES -->
+<section id="services" class="py-16 md:py-24">
+  <div class="max-w-4xl mx-auto px-6">
+    <p class="reveal text-center font-body text-rose tracking-[0.2em] uppercase text-xs font-bold mb-3" data-de="Leistungen & Preise" data-ru="Услуги и цены" data-en="Services & Prices">Leistungen & Preise</p>
+    <h2 class="reveal stagger-1 text-center font-heading text-4xl md:text-5xl text-espresso mb-14" data-de="Unsere Behandlungen" data-ru="Наши процедуры" data-en="Our Treatments">Unsere Behandlungen</h2>
+    <div class="space-y-4" id="accordionContainer"></div>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦</span></div>
+
+<!-- GALLERY -->
+<section id="gallery" class="py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <p class="reveal text-center font-body text-rose tracking-[0.2em] uppercase text-xs font-bold mb-3" data-de="Galerie" data-ru="Галерея" data-en="Gallery">Galerie</p>
+    <h2 class="reveal stagger-1 text-center font-heading text-4xl md:text-5xl text-espresso mb-10" data-de="Unsere Arbeiten" data-ru="Наши работы" data-en="Our Work">Unsere Arbeiten</h2>
+    <div class="reveal stagger-2 flex flex-wrap justify-center gap-3 mb-12" id="categoryPills"></div>
+    <div id="galleryPanels" class="reveal stagger-3"></div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="absolute top-6 right-6 text-white text-3xl font-light hover:rotate-90 transition-transform z-10" onclick="closeLightbox(event)">&times;</button>
+  <div class="lightbox-content" id="lightboxInner"></div>
+</div>
+
+<div class="section-divider"><span>✦</span></div>
+
+<!-- REVIEWS -->
+<section id="reviews" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <p class="reveal text-center font-body text-rose tracking-[0.2em] uppercase text-xs font-bold mb-3" data-de="Bewertungen" data-ru="Отзывы" data-en="Reviews">Bewertungen</p>
+    <h2 class="reveal stagger-1 text-center font-heading text-4xl md:text-5xl text-espresso mb-14" data-de="Was unsere Kunden sagen" data-ru="Что говорят наши клиенты" data-en="What our clients say">Was unsere Kunden sagen</h2>
+    <div class="grid md:grid-cols-3 gap-6" id="reviewsGrid"></div>
+  </div>
+</section>
+
+<div class="section-divider"><span>✦</span></div>
+
+<!-- BOOKING -->
+<section id="booking" class="py-16 md:py-24">
+  <div class="max-w-2xl mx-auto px-6">
+    <p class="reveal text-center font-body text-rose tracking-[0.2em] uppercase text-xs font-bold mb-3" data-de="Online-Buchung" data-ru="Онлайн-запись" data-en="Online Booking">Online-Buchung</p>
+    <h2 class="reveal stagger-1 text-center font-heading text-4xl md:text-5xl text-espresso mb-10" data-de="Termin vereinbaren" data-ru="Записаться на приём" data-en="Book an appointment">Termin vereinbaren</h2>
+    <div id="bookingStep1" class="reveal stagger-2">
+      <div class="bg-cream-dark/40 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-cream-dark/30 shadow-sm">
+        <form id="bookingForm" class="space-y-5" onsubmit="bookingSubmit(event)">
+          <div>
+            <label class="font-body text-xs font-bold text-espresso/60 uppercase tracking-wider mb-1.5 block" data-de="Behandlung" data-ru="Процедура" data-en="Treatment">Behandlung</label>
+            <select required class="form-input w-full px-4 py-3.5 rounded-xl font-body text-sm" id="serviceSelect"></select>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="font-body text-xs font-bold text-espresso/60 uppercase tracking-wider mb-1.5 block" data-de="Datum" data-ru="Дата" data-en="Date">Datum</label>
+              <input type="date" required class="form-input w-full px-4 py-3.5 rounded-xl font-body text-sm" id="bookingDate">
+            </div>
+            <div>
+              <label class="font-body text-xs font-bold text-espresso/60 uppercase tracking-wider mb-1.5 block" data-de="Uhrzeit" data-ru="Время" data-en="Time">Uhrzeit</label>
+              <select required class="form-input w-full px-4 py-3.5 rounded-xl font-body text-sm" id="timeSelect"></select>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="font-body text-xs font-bold text-espresso/60 uppercase tracking-wider mb-1.5 block" data-de="Ihr Name" data-ru="Ваше имя" data-en="Your name">Ihr Name</label>
+              <input type="text" required class="form-input w-full px-4 py-3.5 rounded-xl font-body text-sm" id="bookingName" data-de-placeholder="Vor- und Nachname" data-ru-placeholder="Имя и фамилия" data-en-placeholder="First and last name" placeholder="Vor- und Nachname">
+            </div>
+            <div>
+              <label class="font-body text-xs font-bold text-espresso/60 uppercase tracking-wider mb-1.5 block" data-de="Telefon" data-ru="Телефон" data-en="Phone">Telefon</label>
+              <input type="tel" required class="form-input w-full px-4 py-3.5 rounded-xl font-body text-sm" id="bookingPhone" data-de-placeholder="+43 660 ..." data-ru-placeholder="+43 660 ..." data-en-placeholder="+43 660 ..." placeholder="+43 660 ...">
+            </div>
+          </div>
+          <div>
+            <label class="font-body text-xs font-bold text-espresso/60 uppercase tracking-wider mb-1.5 block" data-de="E-Mail" data-ru="Эл. почта" data-en="Email">E-Mail</label>
+            <input type="email" required class="form-input w-full px-4 py-3.5 rounded-xl font-body text-sm" id="bookingEmail" data-de-placeholder="ihre@email.com" data-ru-placeholder="ваша@почта.com" data-en-placeholder="your@email.com" placeholder="ihre@email.com">
+          </div>
+          <div>
+            <label class="font-body text-xs font-bold text-espresso/60 uppercase tracking-wider mb-1.5 block" data-de="Nachricht (optional)" data-ru="Сообщение (необязательно)" data-en="Message (optional)">Nachricht (optional)</label>
+            <textarea rows="3" class="form-input w-full px-4 py-3.5 rounded-xl font-body text-sm resize-none" data-de-placeholder="Besondere Wünsche..." data-ru-placeholder="Особые пожелания..." data-en-placeholder="Special requests..." placeholder="Besondere Wünsche..."></textarea>
+          </div>
+          <button type="submit" class="cta-btn w-full border-2 border-espresso text-espresso font-body font-bold text-sm tracking-widest uppercase px-8 py-4 rounded-full mt-2" data-de="Termin buchen" data-ru="Записаться" data-en="Book appointment">Termin buchen</button>
+        </form>
+      </div>
+    </div>
+    <div id="bookingSuccess" class="hidden">
+      <div class="bg-cream-dark/40 rounded-3xl p-10 text-center border border-cream-dark/30">
+        <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-rose/10 flex items-center justify-center"><span class="text-3xl text-rose">✓</span></div>
+        <h3 class="font-heading text-2xl text-espresso mb-3" data-de="Termin gebucht!" data-ru="Вы записаны!" data-en="Appointment booked!">Termin gebucht!</h3>
+        <p class="font-body text-espresso/60 mb-5" data-de="Wir melden uns in Kürze bei Ihnen zur Bestätigung." data-ru="Мы свяжемся с вами для подтверждения." data-en="We will contact you shortly to confirm.">Wir melden uns in Kürze bei Ihnen zur Bestätigung.</p>
+        <div id="bookingSummary" class="bg-cream rounded-2xl p-5 text-left space-y-2 font-body text-sm"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FAQ -->
+<section id="faq" class="py-16 md:py-24">
+  <div class="max-w-3xl mx-auto px-6">
+    <p class="reveal text-center font-body text-rose tracking-[0.2em] uppercase text-xs font-bold mb-3" data-de="FAQ" data-ru="ЧАВО" data-en="FAQ">FAQ</p>
+    <h2 class="reveal stagger-1 text-center font-heading text-4xl md:text-5xl text-espresso mb-12" data-de="Häufige Fragen" data-ru="Частые вопросы" data-en="Frequently Asked Questions">Häufige Fragen</h2>
+    <div id="faqContainer" class="space-y-4"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="py-16 md:py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <p class="reveal text-center font-body text-rose tracking-[0.2em] uppercase text-xs font-bold mb-3" data-de="Kontakt" data-ru="Контакт" data-en="Contact">Kontakt</p>
+    <h2 class="reveal stagger-1 text-center font-heading text-4xl md:text-5xl text-espresso mb-12" data-de="So finden Sie uns" data-ru="Как нас найти" data-en="How to find us">So finden Sie uns</h2>
+    <div class="grid md:grid-cols-2 gap-10 reveal stagger-2">
+      <div class="bg-cream-dark/40 backdrop-blur-sm rounded-3xl p-8 border border-cream-dark/30 space-y-5">
+        <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-full bg-rose/10 flex items-center justify-center flex-shrink-0"><span class="text-rose text-sm">📍</span></div><div><p class="font-body font-bold text-sm mb-0.5" data-de="Adresse" data-ru="Адрес" data-en="Address">Adresse</p><p class="font-body text-sm text-espresso/60">Theaterstraße 3, 34117 Kassel</p></div></div>
+        <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-full bg-rose/10 flex items-center justify-center flex-shrink-0"><span class="text-rose text-sm">📞</span></div><div><p class="font-body font-bold text-sm mb-0.5" data-de="WhatsApp / Telefon" data-ru="WhatsApp / Телефон" data-en="WhatsApp / Phone">WhatsApp / Telefon</p><a href="tel:+4917675881485" class="font-body text-sm text-espresso/60 hover:text-rose transition-colors">+49 176 75881485</a></div></div>
+        <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-full bg-rose/10 flex items-center justify-center flex-shrink-0"><span class="text-rose text-sm">✉</span></div><div><p class="font-body font-bold text-sm mb-0.5">E-Mail</p><a href="mailto:info@beautyglanz.de" class="font-body text-sm text-espresso/60 hover:text-rose transition-colors">info@beautyglanz.de</a></div></div>
+        <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-full bg-rose/10 flex items-center justify-center flex-shrink-0"><span class="text-rose text-sm">📸</span></div><div><p class="font-body font-bold text-sm mb-0.5">Instagram</p><a href="https://instagram.com/beautyglanz_26" target="_blank" class="font-body text-sm text-espresso/60 hover:text-rose transition-colors">@beautyglanz_26</a></div></div>
+        <div class="flex items-start gap-4"><div class="w-10 h-10 rounded-full bg-rose/10 flex items-center justify-center flex-shrink-0"><span class="text-rose text-sm">🕐</span></div><div><p class="font-body font-bold text-sm mb-0.5" data-de="Öffnungszeiten" data-ru="Часы работы" data-en="Opening hours">Öffnungszeiten</p><p class="font-body text-sm text-espresso/60" data-de="Mo–Sa: 09:00–19:00" data-ru="Пн–Сб: 09:00–19:00" data-en="Mon–Sat: 09:00–19:00">Mo–Sa: 09:00–19:00</p></div></div>
+      </div>
+      <div class="bg-cream-dark/40 rounded-3xl p-3 h-full min-h-[400px]">
+        <div class="w-full h-full rounded-2xl overflow-hidden shadow-inner relative bg-cream">
+          <iframe src="https://maps.google.com/maps?q=Theaterstra%C3%9Fe%203%2C%2034117%20Kassel&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;min-height:320px" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-espresso text-cream py-12">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <img src="logo.png" alt="Beauty Glanz" class="h-10 brightness-0 invert opacity-80">
+    <p class="font-body text-sm text-cream/50">&copy; 2026 Beauty Glanz. <span data-de="Alle Rechte vorbehalten." data-ru="Все права защищены." data-en="All rights reserved.">Alle Rechte vorbehalten.</span></p>
+    <div class="flex gap-4">
+      <a href="#" class="text-cream/60 hover:text-rose transition-colors text-sm">Instagram</a>
+      <a href="#" class="text-cream/60 hover:text-rose transition-colors text-sm" data-de="Impressum" data-ru="Правовая информация" data-en="Legal Notice">Impressum</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const LANGS = ['de','ru','en'];
+const LANG_LABELS = {de:'RU',ru:'EN',en:'DE'};
+let currentLang = 'de';
+let activeCategory = 'nails';
+
+const services = [
+  {id:'nails',de:'Maniküre & Nägel',ru:'Маникюр и ногти',en:'Manicure & Nails',items:[
+    {de:'Maniküre klassisch',ru:'Классический маникюр',en:'Classic manicure',p:'25 €'},
+    {de:'Maniküre mit Gel',ru:'Маникюр с гелем',en:'Gel manicure',p:'45 €'},
+    {de:'Gel-Verlängerung',ru:'Наращивание гелем',en:'Gel extensions',p:'65 €'},
+    {de:'Nagel-Design (pro Nagel)',ru:'Дизайн ногтей (за ноготь)',en:'Nail design (per nail)',p:'5 €'},
+    {de:'Gel entfernen',ru:'Снятие геля',en:'Gel removal',p:'15 €'},
+    {de:'Reparatur (pro Nagel)',ru:'Ремонт (за ноготь)',en:'Repair (per nail)',p:'8 €'},
+  ]},
+  {id:'pedicure',de:'Pediküre',ru:'Педикюр',en:'Pedicure',items:[
+    {de:'Pediküre klassisch',ru:'Классический педикюр',en:'Classic pedicure',p:'35 €'},
+    {de:'Pediküre mit Gel',ru:'Педикюр с гелем',en:'Gel pedicure',p:'55 €'},
+    {de:'Medizinische Pediküre',ru:'Медицинский педикюр',en:'Medical pedicure',p:'50 €'},
+    {de:'Fußpflege Spa',ru:'Спа-уход за стопами',en:'Foot spa care',p:'40 €'},
+  ]},
+  {id:'brows',de:'Augenbrauen',ru:'Брови',en:'Eyebrows',items:[
+    {de:'Augenbrauen zupfen',ru:'Коррекция бровей',en:'Brow shaping',p:'15 €'},
+    {de:'Augenbrauen färben',ru:'Окрашивание бровей',en:'Brow tinting',p:'15 €'},
+    {de:'Brow Lamination',ru:'Ламинирование бровей',en:'Brow lamination',p:'45 €'},
+    {de:'Brow Lamination + Färben',ru:'Ламинирование + окрашивание',en:'Lamination + tinting',p:'55 €'},
+  ]},
+  {id:'lashes',de:'Wimpern',ru:'Ресницы',en:'Lashes',items:[
+    {de:'Wimpernverlängerung Classic',ru:'Наращивание ресниц классика',en:'Classic lash extensions',p:'80 €'},
+    {de:'Wimpernverlängerung Volume',ru:'Наращивание ресниц объём',en:'Volume lash extensions',p:'100 €'},
+    {de:'Wimpern-Lifting',ru:'Лифтинг ресниц',en:'Lash lifting',p:'50 €'},
+    {de:'Wimpern färben',ru:'Окрашивание ресниц',en:'Lash tinting',p:'15 €'},
+    {de:'Wimpern entfernen',ru:'Снятие ресниц',en:'Lash removal',p:'20 €'},
+  ]},
+  {id:'makeup',de:'Make-up',ru:'Макияж',en:'Make-up',items:[
+    {de:'Tages Make-up',ru:'Дневной макияж',en:'Day make-up',p:'50 €'},
+    {de:'Abend Make-up',ru:'Вечерний макияж',en:'Evening make-up',p:'70 €'},
+    {de:'Braut Make-up',ru:'Свадебный макияж',en:'Bridal make-up',p:'120 €'},
+    {de:'Braut Make-up + Probe',ru:'Свадебный макияж + проба',en:'Bridal make-up + trial',p:'180 €'},
+  ]},
+  {id:'waxing',de:'Waxing',ru:'Ваксинг',en:'Waxing',hasTabs:true,
+    tabs:{damen:{de:'Damen',ru:'Женщинам',en:'Women',items:[
+      {de:'Oberlippe',ru:'Верхняя губа',en:'Upper lip',p:'10 €'},
+      {de:'Achseln',ru:'Подмышки',en:'Underarms',p:'15 €'},
+      {de:'Bikinizone',ru:'Зона бикини',en:'Bikini area',p:'25 €'},
+      {de:'Ganzes Bein',ru:'Полностью ноги',en:'Full legs',p:'40 €'},
+      {de:'Halbes Bein',ru:'Полуноги',en:'Half legs',p:'25 €'},
+      {de:'Arme',ru:'Руки',en:'Arms',p:'20 €'},
+    ]},herren:{de:'Herren',ru:'Мужчинам',en:'Men',items:[
+      {de:'Rücken',ru:'Спина',en:'Back',p:'35 €'},
+      {de:'Brust',ru:'Грудь',en:'Chest',p:'30 €'},
+      {de:'Ganzes Bein',ru:'Полностью ноги',en:'Full legs',p:'45 €'},
+      {de:'Achseln',ru:'Подмышки',en:'Underarms',p:'15 €'},
+    ]}}
+  },
+  {id:'permanent',de:'Permanent Make-up',ru:'Перманентный макияж',en:'Permanent Make-up',items:[
+    {de:'Augenbrauen Permanent',ru:'Перманент бровей',en:'Permanent brows',p:'250 €'},
+    {de:'Lippen Permanent',ru:'Перманент губ',en:'Permanent lips',p:'280 €'},
+    {de:'Eyeliner Permanent',ru:'Перманент стрелки',en:'Permanent eyeliner',p:'200 €'},
+    {de:'Auffrischung (bis 6 Mo.)',ru:'Коррекция (до 6 мес.)',en:'Touch-up (up to 6 mo.)',p:'120 €'},
+  ]},
+  {id:'lifting',de:'Wimpern & Brauen Lifting',ru:'Лифтинг ресниц и бровей',en:'Lash & Brow Lifting',items:[
+    {de:'Wimpern Lifting + Botox',ru:'Лифтинг ресниц + ботокс',en:'Lash lifting + botox',p:'60 €'},
+    {de:'Wimpern Lifting + Färben',ru:'Лифтинг ресниц + окрашивание',en:'Lash lifting + tinting',p:'55 €'},
+    {de:'Brauen Lifting + Färben',ru:'Лифтинг бровей + окрашивание',en:'Brow lifting + tinting',p:'55 €'},
+    {de:'Kombi: Wimpern + Brauen Lifting',ru:'Комбо: лифтинг ресниц + бровей',en:'Combo: lash + brow lifting',p:'90 €'},
+  ]},
+];
+
+const galleryCategories = [
+  {id:'nails',de:'Nails',ru:'Ногти',en:'Nails',images:[
+    {src:'gallery/nails_2.png',de:'Geometrisches Design',ru:'Геометрический дизайн',en:'Geometric design'},
+    {grad:'from-[#e8c4b8] via-[#d4a090] to-[#c4826a]',de:'French Manicure',ru:'Французский маникюр',en:'French manicure'},
+    {grad:'from-[#f0d5c9] via-[#c4826a] to-[#a8694f]',de:'Nude Eleganz',ru:'Нюдовая элегантность',en:'Nude elegance'},
+    {grad:'from-[#c4826a] via-[#e8dfd4] to-[#d9a895]',de:'Gel-Verlängerung',ru:'Наращивание',en:'Gel extensions'},
+  ]},
+  {id:'brows',de:'Brauen',ru:'Брови',en:'Brows',images:[
+    {src:'gallery/brows_1.png',de:'Perfekte Augenbrauen',ru:'Идеальные брови',en:'Perfect brows'},
+    {grad:'from-[#a08070] via-[#c4826a] to-[#e8dfd4]',de:'Brow Lamination',ru:'Ламинирование бровей',en:'Brow lamination'},
+    {grad:'from-[#d4a090] via-[#1c1410]/20 to-[#e8dfd4]',de:'Microblading',ru:'Микроблейдинг',en:'Microblading'},
+    {grad:'from-[#c4826a]/40 via-[#e8dfd4] to-[#a08070]',de:'Brow Styling',ru:'Стайлинг бровей',en:'Brow styling'},
+  ]},
+  {id:'lashes',de:'Wimpern',ru:'Ресницы',en:'Lashes',images:[
+    {src:'gallery/lashes_1.png',de:'Volume Lashes',ru:'Объёмные ресницы',en:'Volume lashes'},
+    {grad:'from-[#a08070] via-[#d4a090] to-[#f5efe8]',de:'Classic Lashes',ru:'Классические ресницы',en:'Classic lashes'},
+    {grad:'from-[#c4826a]/50 via-[#1c1410]/20 to-[#e8dfd4]',de:'Natural Look',ru:'Натуральный образ',en:'Natural look'},
+    {grad:'from-[#d9a895] via-[#c4826a]/30 to-[#f5efe8]',de:'Mega Volume',ru:'Мега объём',en:'Mega volume'},
+  ]},
+  {id:'makeup',de:'Make-up',ru:'Макияж',en:'Make-up',images:[
+    {src:'gallery/makeup_1.png',de:'Braut Make-up',ru:'Свадебный макияж',en:'Bridal make-up'},
+    {grad:'from-[#a8694f] via-[#c4826a] to-[#e8dfd4]',de:'Abend Make-up',ru:'Вечерний макияж',en:'Evening make-up'},
+    {grad:'from-[#d4a090] via-[#f5efe8] to-[#c4826a]/30',de:'Tages Make-up',ru:'Дневной макияж',en:'Day make-up'},
+    {grad:'from-[#c4826a]/60 via-[#d9a895] to-[#e8dfd4]',de:'Special Occasion',ru:'Особый повод',en:'Special occasion'},
+  ]},
+  {id:'pedicure',de:'Pediküre',ru:'Педикюр',en:'Pedicure',images:[
+    {src:'gallery/pedicure_1.png',de:'Gel Pediküre',ru:'Гель-педикюр',en:'Gel pedicure'},
+    {grad:'from-[#f5efe8] via-[#d4a090] to-[#a8694f]/40',de:'Spa Fußpflege',ru:'Спа-уход',en:'Foot spa care'},
+    {grad:'from-[#c4826a]/30 via-[#e8dfd4] to-[#d9a895]',de:'Klassisch',ru:'Классический',en:'Classic'},
+    {grad:'from-[#d9a895]/50 via-[#f5efe8] to-[#c4826a]/20',de:'Med. Pediküre',ru:'Мед. педикюр',en:'Medical pedicure'},
+  ]},
+  {id:'waxing',de:'Waxing',ru:'Ваксинг',en:'Waxing',images:[
+    {grad:'from-[#d9a895] via-[#f5efe8] to-[#c4826a]/30',de:'Ganzkörper',ru:'Всё тело',en:'Full body'},
+    {grad:'from-[#e8dfd4] via-[#c4826a]/20 to-[#f5efe8]',de:'Beine',ru:'Ноги',en:'Legs'},
+    {grad:'from-[#c4826a]/40 via-[#d9a895] to-[#f5efe8]',de:'Bikinizone',ru:'Бикини',en:'Bikini area'},
+    {grad:'from-[#f5efe8] via-[#d4a090]/30 to-[#e8dfd4]',de:'Achseln',ru:'Подмышки',en:'Underarms'},
+  ]},
+  {id:'permanent',de:'Permanent',ru:'Перманент',en:'Permanent',images:[
+    {grad:'from-[#c4826a] via-[#a8694f] to-[#1c1410]/20',de:'Lippen',ru:'Губы',en:'Lips'},
+    {grad:'from-[#d4a090] via-[#c4826a] to-[#e8dfd4]',de:'Brauen',ru:'Брови',en:'Brows'},
+    {grad:'from-[#a8694f]/60 via-[#c4826a] to-[#d9a895]',de:'Eyeliner',ru:'Стрелки',en:'Eyeliner'},
+    {grad:'from-[#c4826a]/30 via-[#d4a090] to-[#1c1410]/10',de:'Auffrischung',ru:'Коррекция',en:'Touch-up'},
+  ]},
+  {id:'lifting',de:'Lifting',ru:'Лифтинг',en:'Lifting',images:[
+    {grad:'from-[#f5efe8] via-[#d9a895] to-[#c4826a]/40',de:'Wimpern Lifting',ru:'Лифтинг ресниц',en:'Lash lifting'},
+    {grad:'from-[#e8dfd4] via-[#c4826a]/30 to-[#d4a090]',de:'Brauen Lifting',ru:'Лифтинг бровей',en:'Brow lifting'},
+    {grad:'from-[#d9a895]/60 via-[#f5efe8] to-[#c4826a]/20',de:'Kombi',ru:'Комбо',en:'Combo'},
+    {grad:'from-[#c4826a]/20 via-[#d9a895]/40 to-[#e8dfd4]',de:'Botox Lashes',ru:'Ботокс ресниц',en:'Botox lashes'},
+  ]},
+];
+
+const reviews = [
+  {name:'Maria S.',de:'Anna ist unglaublich talentiert! Meine Nägel sehen jedes Mal perfekt aus. Der Salon ist wunderschön und die Atmosphäre sehr entspannt.',ru:'Анна невероятно талантлива! Мои ногти каждый раз выглядят идеально. Салон красивый, а атмосфера очень расслабляющая.',en:'Anna is incredibly talented! My nails look perfect every time. The salon is beautiful and the atmosphere very relaxing.'},
+  {name:'Elena K.',de:'Die beste Meisterin in Kassel! Ich komme seit 3 Jahren zu Anna und war nie enttäuscht. Ihr Permanent Make-up ist einfach Kunst.',ru:'Лучший мастер в Касселе! Я хожу к Анне уже 3 года и ни разу не была разочарована. Её перманентный макияж — это просто искусство.',en:'The best master in Kassel! I\'ve been coming to Anna for 3 years and was never disappointed. Her permanent make-up is simply art.'},
+  {name:'Olga M.',de:'Professionell, freundlich und immer pünktlich. Meine Wimpernverlängerung hält ewig und sieht so natürlich aus. Absolute Empfehlung!',ru:'Профессионально, дружелюбно и всегда пунктуально. Мои нарощенные ресницы держатся вечно и выглядят так натурально. Абсолютная рекомендация!',en:'Professional, friendly and always punctual. My lash extensions last forever and look so natural. Absolute recommendation!'},
+];
+
+const faqs = [
+  {q:{de:'Wie kann ich meinen Termin absagen oder verschieben?',ru:'Как я могу отменить или перенести запись?',en:'How can I cancel or reschedule my appointment?'},
+   a:{de:'Bitte informieren Sie uns mindestens 24 Stunden im Voraus per Telefon oder Nachricht. Bei sehr kurzfristigen Absagen müssen wir leider 50% des Behandlungspreises in Rechnung stellen.',ru:'Пожалуйста, сообщите нам как минимум за 24 часа. При очень поздней отмене мы будем вынуждены удержать 50% от стоимости процедуры.',en:'Please inform us at least 24 hours in advance. For very late cancellations, we unfortunately have to charge 50% of the treatment price.'}},
+  {q:{de:'Welche Zahlungsmöglichkeiten bieten Sie an?',ru:'Какие формы оплаты вы принимаете?',en:'Which payment methods do you accept?'},
+   a:{de:'Sie können bei uns bequem in bar, mit Bankomatkarte oder per Kreditkarte (Visa, Mastercard) bezahlen.',ru:'Вы можете оплатить наличными, банковской картой или кредитной картой (Visa, Mastercard).',en:'You can pay conveniently in cash, with a debit card, or by credit card (Visa, Mastercard).'}},
+  {q:{de:'Bieten Sie auch Geschenkgutscheine an?',ru:'Можно ли приобрести подарочные сертификаты?',en:'Do you offer gift certificates?'},
+   a:{de:'Ja, wir bieten wunderschön verpackte Geschenkgutscheine für jeden beliebigen Betrag an. Sie können diese direkt im Salon erwerben.',ru:'Да, мы предлагаем красиво упакованные подарочные сертификаты на любую сумму. Их можно приобрести прямо в салоне.',en:'Yes, we offer beautifully packaged gift certificates for any amount. You can purchase them directly in the salon.'}},
+  {q:{de:'Wie bereite ich mich am besten auf das Waxing vor?',ru:'Как лучше подготовиться к ваксингу?',en:'How should I prepare for waxing?'},
+   a:{de:'Das Haar sollte für ein optimales Ergebnis etwa 4-5 mm lang sein. Vermeiden Sie 24 Stunden vorher direkte Sonneneinstrahlung und benutzen Sie am Tag keine Körperöle an den entsprechenden Stellen.',ru:'Для идеального результата длина волосков должна быть около 4-5 мм. Избегайте солнца за 24 часа и не наносите масла на тело в день депиляции.',en:'For optimal results, hair should be about 4-5 mm long. Avoid direct sunlight 24 hours beforehand and do not use body oils on that day.'}},
+];
+
+/* ============ BUILD ============ */
+function buildAccordion(){
+  const c=document.getElementById('accordionContainer');
+  services.forEach((s,i)=>{
+    const div=document.createElement('div');
+    div.className='reveal stagger-'+(i%4+1)+' bg-cream-dark/40 rounded-2xl overflow-hidden hover-lift';
+    let inner='';
+    if(s.hasTabs){
+      inner=`<div class="px-6 pt-4 flex gap-4">
+        <button class="sub-tab active font-body text-sm font-bold pb-1" onclick="switchTab(this,'${s.id}','damen')" data-de="${s.tabs.damen.de}" data-ru="${s.tabs.damen.ru}" data-en="${s.tabs.damen.en}">${s.tabs.damen[currentLang]}</button>
+        <button class="sub-tab font-body text-sm font-bold pb-1 text-espresso/50" onclick="switchTab(this,'${s.id}','herren')" data-de="${s.tabs.herren.de}" data-ru="${s.tabs.herren.ru}" data-en="${s.tabs.herren.en}">${s.tabs.herren[currentLang]}</button>
+      </div>`;
+      for(const tk of ['damen','herren']){
+        inner+=`<div class="tab-panel-${s.id}" data-tab="${tk}" style="display:${tk==='damen'?'block':'none'}">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 px-6 pb-6 pt-3">
+            ${s.tabs[tk].items.map(it=>`<div class="flex justify-between py-1.5 border-b border-cream-dark/50"><span class="font-body text-sm" data-de="${it.de}" data-ru="${it.ru}" data-en="${it.en}">${it[currentLang]}</span><span class="font-body text-sm font-bold text-rose whitespace-nowrap ml-4">${it.p}</span></div>`).join('')}
+          </div></div>`;
+      }
+    } else {
+      inner=`<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 px-6 pb-6 pt-1">
+        ${s.items.map(it=>`<div class="flex justify-between py-1.5 border-b border-cream-dark/50"><span class="font-body text-sm" data-de="${it.de}" data-ru="${it.ru}" data-en="${it.en}">${it[currentLang]}</span><span class="font-body text-sm font-bold text-rose whitespace-nowrap ml-4">${it.p}</span></div>`).join('')}
+      </div>`;
+    }
+    div.innerHTML=`<button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleAccordion(this)">
+        <span class="font-heading text-xl text-espresso" data-de="${s.de}" data-ru="${s.ru}" data-en="${s.en}">${s[currentLang]}</span>
+        <span class="accordion-icon text-rose text-2xl font-light leading-none select-none">+</span>
+      </button><div class="accordion-body"><div>${inner}</div></div>`;
+    c.appendChild(div);
+  });
+}
+
+function buildGallery(){
+  const pillsC=document.getElementById('categoryPills');
+  const panelsC=document.getElementById('galleryPanels');
+  galleryCategories.forEach((cat,ci)=>{
+    const pill=document.createElement('button');
+    pill.className=`cat-pill font-body text-sm font-medium px-5 py-2 rounded-full ${ci===0?'active':''}`;
+    pill.dataset.cat=cat.id;
+    pill.setAttribute('data-de',cat.de);pill.setAttribute('data-ru',cat.ru);pill.setAttribute('data-en',cat.en);
+    pill.textContent=cat[currentLang];
+    pill.onclick=()=>switchCategory(cat.id);
+    pillsC.appendChild(pill);
+
+    const panel=document.createElement('div');
+    panel.className=`cat-panel ${ci===0?'active':''}`;
+    panel.dataset.catPanel=cat.id;
+    const cId=`carousel-${cat.id}`;
+    let cards=cat.images.map(img=>{
+      const content=img.src
+        ?`<img src="${img.src}" alt="${img[currentLang]}" class="w-full h-full object-cover">`
+        :`<div class="w-full h-full bg-gradient-to-br ${img.grad}"></div>`;
+      return `<div class="carousel-card w-[260px] md:w-[300px]" onclick="openLightbox(this)" data-src="${img.src||''}" data-grad="${img.grad||''}">
+        <div class="relative rounded-2xl overflow-hidden aspect-[3/4] gallery-item shadow-md">
+          ${content}
+          <div class="absolute inset-0 bg-gradient-to-t from-espresso/50 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4">
+            <p class="font-heading text-lg text-white drop-shadow-lg" data-de="${img.de}" data-ru="${img.ru}" data-en="${img.en}">${img[currentLang]}</p>
+          </div>
+        </div></div>`;
+    }).join('');
+    panel.innerHTML=`<div class="relative">
+        <div class="flex items-center gap-3 mb-4">
+          <h3 class="font-heading text-2xl text-espresso" data-de="${cat.de}" data-ru="${cat.ru}" data-en="${cat.en}">${cat[currentLang]}</h3>
+          <div class="flex-1"></div>
+          <button class="carousel-arrow" onclick="scrollCarousel('${cId}',-1)">‹</button>
+          <button class="carousel-arrow" onclick="scrollCarousel('${cId}',1)">›</button>
+        </div>
+        <div class="carousel-track" id="${cId}">${cards}</div>
+      </div>`;
+    panelsC.appendChild(panel);
+  });
+}
+
+function buildReviews(){
+  const r=document.getElementById('reviewsGrid');
+  reviews.forEach((rev,i)=>{
+    r.innerHTML+=`<div class="reveal stagger-${i+1} bg-cream-dark/40 rounded-2xl p-6 hover-lift">
+      <div class="flex gap-0.5 mb-3">${'<span class="star text-lg">★</span>'.repeat(5)}</div>
+      <p class="font-body text-sm text-espresso/70 leading-relaxed mb-4" data-de="${rev.de}" data-ru="${rev.ru}" data-en="${rev.en}">${rev[currentLang]}</p>
+      <p class="font-body text-sm font-bold text-espresso">— ${rev.name}</p>
+    </div>`;
+  });
+}
+
+function buildFaq(){
+  const c = document.getElementById('faqContainer');
+  faqs.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = `reveal stagger-${i%4+1} bg-cream-dark/40 rounded-2xl overflow-hidden hover-lift`;
+    div.innerHTML = `<button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleAccordion(this)">
+        <span class="font-body font-bold text-sm text-espresso pr-4" data-de="${item.q.de}" data-ru="${item.q.ru}" data-en="${item.q.en}">${item.q[currentLang]}</span>
+        <span class="accordion-icon text-rose text-2xl font-light leading-none select-none">+</span>
+      </button>
+      <div class="accordion-body">
+        <div class="px-6 pb-6 pt-1 font-body text-sm text-espresso/70 leading-relaxed" data-de="${item.a.de}" data-ru="${item.a.ru}" data-en="${item.a.en}">${item.a[currentLang]}</div>
+      </div>`;
+    c.appendChild(div);
+  });
+}
+
+function buildServiceSelect(){
+  const sel=document.getElementById('serviceSelect');
+  const defTexts={de:'Behandlung wählen',ru:'Выберите услугу',en:'Choose service'};
+  const opt0=document.createElement('option');
+  opt0.value='';opt0.textContent=defTexts[currentLang];
+  opt0.setAttribute('data-de',defTexts.de);opt0.setAttribute('data-ru',defTexts.ru);opt0.setAttribute('data-en',defTexts.en);
+  sel.appendChild(opt0);
+  services.forEach(s=>{
+    const o=document.createElement('option');
+    o.value=s.id;o.textContent=s[currentLang];
+    o.setAttribute('data-de',s.de);o.setAttribute('data-ru',s.ru);o.setAttribute('data-en',s.en);
+    sel.appendChild(o);
+  });
+}
+
+/* ============ INTERACTIONS ============ */
+function toggleAccordion(btn){
+  const body=btn.nextElementSibling,icon=btn.querySelector('.accordion-icon'),isOpen=body.classList.contains('open');
+  document.querySelectorAll('.accordion-body.open').forEach(b=>{b.classList.remove('open');b.previousElementSibling.querySelector('.accordion-icon').classList.remove('rotated')});
+  if(!isOpen){body.classList.add('open');icon.classList.add('rotated')}
+}
+function switchTab(btn,sId,tabKey){
+  btn.parentElement.querySelectorAll('.sub-tab').forEach(t=>{t.classList.remove('active');t.classList.add('text-espresso/50')});
+  btn.classList.add('active');btn.classList.remove('text-espresso/50');
+  document.querySelectorAll(`.tab-panel-${sId}`).forEach(p=>{p.style.display=p.dataset.tab===tabKey?'block':'none'});
+}
+function switchCategory(catId){
+  activeCategory=catId;
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  document.querySelector(`.cat-pill[data-cat="${catId}"]`).classList.add('active');
+  document.querySelectorAll('.cat-panel').forEach(p=>{p.classList.toggle('active',p.dataset.catPanel===catId)});
+}
+function scrollCarousel(id,dir){
+  const track=document.getElementById(id);
+  track.scrollBy({left:dir*(track.querySelector('.carousel-card').offsetWidth+16),behavior:'smooth'});
+}
+function openLightbox(card){
+  const lb=document.getElementById('lightbox'),inner=document.getElementById('lightboxInner'),src=card.dataset.src,grad=card.dataset.grad;
+  inner.innerHTML=src
+    ?`<img src="${src}" alt="" class="max-w-[90vw] max-h-[85vh] rounded-2xl object-contain shadow-2xl">`
+    :`<div class="w-[80vw] max-w-lg aspect-[3/4] rounded-2xl bg-gradient-to-br ${grad} shadow-2xl"></div>`;
+  lb.classList.add('active');
+}
+function closeLightbox(e){if(e&&e.target!==e.currentTarget&&!e.target.closest('button'))return;document.getElementById('lightbox').classList.remove('active')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('active')});
+function submitForm(e){e.preventDefault();document.getElementById('bookingStep1').classList.add('hidden');document.getElementById('bookingSuccess').classList.remove('hidden')}
+
+function buildTimeSlots(){
+  const sel=document.getElementById('timeSelect');
+  const defTexts={de:'Uhrzeit wählen',ru:'Выберите время',en:'Select time'};
+  const opt0=document.createElement('option');
+  opt0.value='';opt0.textContent=defTexts[currentLang];
+  opt0.setAttribute('data-de',defTexts.de);opt0.setAttribute('data-ru',defTexts.ru);opt0.setAttribute('data-en',defTexts.en);
+  sel.appendChild(opt0);
+  const times=['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00'];
+  times.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;sel.appendChild(o)});
+}
+function bookingSubmit(e){
+  e.preventDefault();
+  const svc=document.getElementById('serviceSelect');
+  const svcText=svc.options[svc.selectedIndex]?.textContent||'';
+  const date=document.getElementById('bookingDate').value;
+  const time=document.getElementById('timeSelect').value;
+  const name=document.getElementById('bookingName').value;
+  const phone=document.getElementById('bookingPhone').value;
+  const email=document.getElementById('bookingEmail').value;
+  if(!time){alert(currentLang==='de'?'Bitte wählen Sie eine Uhrzeit':currentLang==='ru'?'Пожалуйста, выберите время':'Please select a time');return;}
+  const labels={de:{svc:'Behandlung',date:'Datum',time:'Uhrzeit',name:'Name',phone:'Telefon',email:'E-Mail'},ru:{svc:'Процедура',date:'Дата',time:'Время',name:'Имя',phone:'Телефон',email:'Эл. почта'},en:{svc:'Treatment',date:'Date',time:'Time',name:'Name',phone:'Phone',email:'Email'}};
+  const l=labels[currentLang];
+  document.getElementById('bookingSummary').innerHTML=`
+    <div class="flex justify-between border-b border-cream-dark/40 pb-2"><span class="text-espresso/60">${l.svc}</span><span class="font-bold">${svcText}</span></div>
+    <div class="flex justify-between border-b border-cream-dark/40 pb-2"><span class="text-espresso/60">${l.date}</span><span class="font-bold">${date}</span></div>
+    <div class="flex justify-between border-b border-cream-dark/40 pb-2"><span class="text-espresso/60">${l.time}</span><span class="font-bold">${time}</span></div>
+    <div class="flex justify-between border-b border-cream-dark/40 pb-2"><span class="text-espresso/60">${l.name}</span><span class="font-bold">${name}</span></div>
+    <div class="flex justify-between border-b border-cream-dark/40 pb-2"><span class="text-espresso/60">${l.phone}</span><span class="font-bold">${phone}</span></div>
+    <div class="flex justify-between"><span class="text-espresso/60">${l.email}</span><span class="font-bold">${email}</span></div>`;
+  document.getElementById('bookingStep1').classList.add('hidden');
+  document.getElementById('bookingSuccess').classList.remove('hidden');
+}
+
+/* ============ LANGUAGE ============ */
+function selectLang(lang){
+  currentLang=lang;
+  document.getElementById('langLabel').textContent=lang.toUpperCase();
+  document.querySelectorAll('.lang-option').forEach(o=>{o.classList.toggle('active',o.dataset.lang===lang)});
+  document.getElementById('langSwitcher').classList.remove('open');
+  document.querySelectorAll('[data-de]').forEach(el=>{
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')return;
+    const v=el.getAttribute('data-'+currentLang);if(v)el.textContent=v;
+  });
+  document.querySelectorAll('[data-de-placeholder]').forEach(el=>{
+    const v=el.getAttribute('data-'+currentLang+'-placeholder');if(v)el.placeholder=v;
+  });
+}
+document.addEventListener('click',e=>{const s=document.getElementById('langSwitcher');if(!s.contains(e.target))s.classList.remove('open')});
+function closeMobile(){document.getElementById('mobileOverlay').classList.remove('open')}
+
+/* ============ OBSERVER ============ */
+function initObserver(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');obs.unobserve(entry.target)}});
+  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+}
+
+buildAccordion();buildGallery();buildReviews();buildFaq();buildServiceSelect();buildTimeSlots();initObserver();
+// Set min date to today
+const today=new Date().toISOString().split('T')[0];document.getElementById('bookingDate').min=today;document.getElementById('bookingDate').value=today;
+</script>
+</body>
+</html>
