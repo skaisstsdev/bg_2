@@ -150,7 +150,7 @@ select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
       <a href="#booking" class="reveal stagger-3 cta-btn inline-block border-2 border-espresso text-espresso font-body font-bold text-sm tracking-widest uppercase px-8 py-3.5 rounded-full mt-10 md:mt-4 parallax-text" id="heroBtn" data-de="Termin vereinbaren" data-ru="Записаться на приём" data-en="Book appointment">Termin vereinbaren</a>
     </div>
     <!-- Flower image: overlaps text, top layer -->
-    <div class="reveal -mt-8 sm:-mt-12 md:mt-0 md:-ml-32 -mr-12 sm:-mr-16 md:-mr-40 relative z-10 flex justify-end pointer-events-none">
+    <div class="reveal -mt-8 sm:-mt-12 md:mt-0 md:-ml-32 -mr-12 sm:-mr-16 md:-mr-40 relative z-[5] flex justify-end pointer-events-none">
       <img src="flower.png" alt="Flower decoration" id="heroImg" class="w-[85vw] max-w-[420px] md:w-[620px] md:max-w-none h-auto object-contain">
     </div>
   </div>
@@ -158,7 +158,7 @@ select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
 
 
 <!-- INTRO -->
-<section class="py-20 bg-[#EDE5DA]">
+<section class="py-20 bg-[#EDE5DA] relative z-20">
   <div class="max-w-3xl mx-auto px-6 text-center">
     <h2 class="reveal font-heading text-4xl md:text-5xl text-rose mb-6 leading-snug" data-de="Schönheit, die von innen strahlt" data-ru="Красота, которая сияет изнутри" data-en="Beauty that radiates from within">Schönheit, die von innen strahlt</h2>
     <p class="reveal stagger-1 font-body text-espresso/55 text-base leading-relaxed max-w-xl mx-auto" data-de="Im Herzen Kassels verwandeln wir Ihre Schönheitswünsche in Realität. Unser Studio bietet Ihnen eine Oase der Ruhe, in der Präzision und Kreativität aufeinandertreffen — für Ergebnisse, die begeistern." data-ru="В самом сердце Касселя мы воплощаем ваши мечты о красоте в реальность. Наша студия — оазис спокойствия, где точность встречается с креативностью — для результатов, которые восхищают." data-en="In the heart of Kassel, we turn your beauty dreams into reality. Our studio offers you an oasis of calm where precision meets creativity — for results that inspire.">Im Herzen Kassels verwandeln wir Ihre Schönheitswünsche in Realität. Unser Studio bietet Ihnen eine Oase der Ruhe, in der Präzision und Kreativität aufeinandertreffen — für Ergebnisse, die begeistern.</p>
@@ -739,13 +739,11 @@ function initParallax() {
       btn.style.opacity = Math.max(0, 1 - scrollY / 700);
     }
     
-    // Flower stays anchored at the bottom right and gently zooms in
+    // Flower moves DOWN slightly (parallax effect), staying anchored towards the bottom
     if(img) {
-      img.style.transformOrigin = 'bottom right';
-      const imgScale = 1 + scrollY * 0.0005; // smooth gentle zoom
-      const imgRotate = scrollY * 0.015; // subtle rotation
-      // Only scale and rotate, so it stays fixed to bottom
-      img.style.transform = `scale(${imgScale}) rotate(${imgRotate}deg)`;
+      // By using positive translateY, the flower scrolls up slower than the page, keeping it closer to the bottom edge.
+      const imgTranslate = scrollY * 0.3; 
+      img.style.transform = `translateY(${imgTranslate}px)`;
     }
   });
 }
