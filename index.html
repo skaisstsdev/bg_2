@@ -59,6 +59,8 @@ h1,h2,h3,h4,h5,h6{font-family:'Playfair Display',serif}
 @keyframes goldShimmer{0%,100%{filter:brightness(1) drop-shadow(0 4px 20px rgba(196,130,106,.15))}50%{filter:brightness(1.08) sepia(.12) saturate(1.8) hue-rotate(335deg) drop-shadow(0 8px 30px rgba(196,130,106,.3))}}
 @keyframes glowPulse{0%,100%{opacity:.4;transform:translateX(-50%) scale(1)}50%{opacity:.7;transform:translateX(-50%) scale(1.2)}}
 @keyframes logoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+/* Parallax scroll utilities */
+.parallax-text { transition: transform 0.1s ease-out, opacity 0.1s ease-out; }
 /* Section divider */
 .section-divider{padding:20px 0;margin:0;display:flex;justify-content:center}
 .section-divider::before{content:'';display:block;width:80%;max-width:500px;height:1px;background:linear-gradient(90deg,transparent,#C4826A40,transparent)}
@@ -142,14 +144,14 @@ select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
   <div class="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-[1fr_auto] gap-0 items-center relative">
     <!-- Text column -->
     <div class="relative z-0 space-y-6 md:space-y-4">
-      <p class="reveal font-body text-rose tracking-[0.2em] uppercase text-sm font-bold mb-4 md:mb-0" data-de="Nagelstudio & Kosmetik" data-ru="Ногтевая студия и косметология" data-en="Nail Studio & Beauty">Nagelstudio & Kosmetik</p>
-      <h1 class="reveal stagger-1 font-heading text-[28vw] sm:text-[10rem] md:text-[16rem] leading-[0.85] text-espresso -mt-2">Beauty<br><span class="text-rose italic">Glanz</span></h1>
-      <p class="reveal stagger-2 font-body text-espresso/70 text-base max-w-md leading-relaxed mt-8 md:mt-0" data-de="Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit." data-ru="Профессиональный уход за красотой от мастера Анны — ваш путь к натуральной элегантности и вневременной красоте." data-en="Professional beauty care by master Anna — your path to natural elegance and timeless beauty.">Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit.</p>
-      <a href="#booking" class="reveal stagger-3 cta-btn inline-block border-2 border-espresso text-espresso font-body font-bold text-sm tracking-widest uppercase px-8 py-3.5 rounded-full mt-10 md:mt-4" data-de="Termin vereinbaren" data-ru="Записаться на приём" data-en="Book appointment">Termin vereinbaren</a>
+      <p class="reveal font-body text-rose tracking-[0.2em] uppercase text-sm font-bold mb-4 md:mb-0 parallax-text" id="heroSubtitle" data-de="Nagelstudio & Kosmetik" data-ru="Ногтевая студия и косметология" data-en="Nail Studio & Beauty">Nagelstudio & Kosmetik</p>
+      <h1 class="reveal stagger-1 font-heading text-[22vw] sm:text-[10rem] md:text-[16rem] leading-[0.85] text-espresso -mt-2 parallax-text" id="heroTitle">Beauty<br><span class="text-rose italic">Glanz</span></h1>
+      <p class="reveal stagger-2 font-body text-espresso/70 text-base max-w-md leading-relaxed mt-8 md:mt-0 parallax-text" id="heroDesc" data-de="Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit." data-ru="Профессиональный уход за красотой от мастера Анны — ваш путь к натуральной элегантности и вневременной красоте." data-en="Professional beauty care by master Anna — your path to natural elegance and timeless beauty.">Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit.</p>
+      <a href="#booking" class="reveal stagger-3 cta-btn inline-block border-2 border-espresso text-espresso font-body font-bold text-sm tracking-widest uppercase px-8 py-3.5 rounded-full mt-10 md:mt-4 parallax-text" id="heroBtn" data-de="Termin vereinbaren" data-ru="Записаться на приём" data-en="Book appointment">Termin vereinbaren</a>
     </div>
     <!-- Flower image: overlaps text, top layer -->
     <div class="reveal -mt-8 sm:-mt-12 md:mt-0 md:-ml-32 -mr-12 sm:-mr-16 md:-mr-40 relative z-10 flex justify-end pointer-events-none">
-      <img src="flower.png" alt="Flower decoration" class="w-[85vw] max-w-[420px] md:w-[620px] md:max-w-none h-auto object-contain">
+      <img src="flower.png" alt="Flower decoration" id="heroImg" class="w-[85vw] max-w-[420px] md:w-[620px] md:max-w-none h-auto object-contain">
     </div>
   </div>
 </section>
@@ -701,6 +703,54 @@ function initObserver(){
 }
 
 buildAccordion();buildGallery();buildReviews();buildFaq();buildServiceSelect();buildTimeSlots();initObserver();
+// Setup Parallax Scroll Effect
+function initParallax() {
+  const subtitle = document.getElementById('heroSubtitle');
+  const title = document.getElementById('heroTitle');
+  const desc = document.getElementById('heroDesc');
+  const btn = document.getElementById('heroBtn');
+  const img = document.getElementById('heroImg');
+  
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    
+    // Limits the parallax to the hero section area (e.g. up to 800px)
+    if (scrollY > 1000) return;
+    
+    // Move text up and fade out
+    const textTranslate = scrollY * 0.4;
+    const textOpacity = Math.max(0, 1 - scrollY / 500);
+    
+    if(subtitle) {
+      subtitle.style.transform = `translateY(-${scrollY * 0.2}px)`;
+      subtitle.style.opacity = textOpacity;
+    }
+    if(title) {
+      title.style.transform = `translateY(-${textTranslate}px)`;
+      title.style.opacity = textOpacity;
+    }
+    if(desc) {
+      desc.style.transform = `translateY(-${scrollY * 0.3}px)`;
+      desc.style.opacity = textOpacity;
+    }
+    if(btn) {
+      btn.style.transform = `translateY(-${scrollY * 0.15}px)`;
+      // keep the button slightly more visible longer
+      btn.style.opacity = Math.max(0, 1 - scrollY / 700);
+    }
+    
+    // Flower stays anchored at the bottom right and gently zooms in
+    if(img) {
+      img.style.transformOrigin = 'bottom right';
+      const imgScale = 1 + scrollY * 0.0005; // smooth gentle zoom
+      const imgRotate = scrollY * 0.015; // subtle rotation
+      // Only scale and rotate, so it stays fixed to bottom
+      img.style.transform = `scale(${imgScale}) rotate(${imgRotate}deg)`;
+    }
+  });
+}
+initParallax();
+
 // Set min date to today
 const today=new Date().toISOString().split('T')[0];document.getElementById('bookingDate').min=today;document.getElementById('bookingDate').value=today;
 </script>
