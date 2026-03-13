@@ -138,33 +138,32 @@ select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
 </div>
 
 <!-- HERO -->
-<section class="min-h-screen flex items-center pt-20 pb-16 md:pb-0 relative overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-6 md:gap-12 items-center">
-    <!-- On mobile: shape first (order-1), text second (order-2). On md+: text left, shape right -->
-    <div class="order-2 md:order-1 space-y-6">
-      <p class="reveal font-body text-rose tracking-[0.2em] uppercase text-xs font-bold" data-de="Nagelstudio & Kosmetik" data-ru="Ногтевая студия и косметология" data-en="Nail Studio & Beauty">Nagelstudio & Kosmetik</p>
-      <h1 class="reveal stagger-1 font-heading text-5xl md:text-7xl leading-[1.1] text-espresso">Beauty<br><span class="text-rose italic">Glanz</span></h1>
-      <p class="reveal stagger-2 font-body text-espresso/70 text-lg max-w-md leading-relaxed" data-de="Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit." data-ru="Профессиональный уход за красотой от мастера Анны — ваш путь к натуральной элегантности и вневременной красоте." data-en="Professional beauty care by master Anna — your path to natural elegance and timeless beauty.">Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit.</p>
+<section class="min-h-screen flex items-center pt-20 pb-0 relative">
+  <div class="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-[1fr_auto] gap-0 items-center relative">
+    <!-- Text column -->
+    <div class="relative z-0 space-y-4">
+      <p class="reveal font-body text-rose tracking-[0.2em] uppercase text-sm font-bold mb-0" data-de="Nagelstudio & Kosmetik" data-ru="Ногтевая студия и косметология" data-en="Nail Studio & Beauty">Nagelstudio & Kosmetik</p>
+      <h1 class="reveal stagger-1 font-heading text-[10rem] md:text-[16rem] leading-[0.85] text-espresso -mt-2">Beauty<br><span class="text-rose italic">Glanz</span></h1>
+      <p class="reveal stagger-2 font-body text-espresso/70 text-base max-w-md leading-relaxed" data-de="Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit." data-ru="Профессиональный уход за красотой от мастера Анны — ваш путь к натуральной элегантности и вневременной красоте." data-en="Professional beauty care by master Anna — your path to natural elegance and timeless beauty.">Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit.</p>
       <a href="#booking" class="reveal stagger-3 cta-btn inline-block border-2 border-espresso text-espresso font-body font-bold text-sm tracking-widest uppercase px-8 py-3.5 rounded-full" data-de="Termin vereinbaren" data-ru="Записаться на приём" data-en="Book appointment">Termin vereinbaren</a>
     </div>
-    <div class="order-1 md:order-2 reveal-right flex flex-col items-center md:justify-center py-4 md:py-0">
-      <img src="logo_optimized.png" alt="Beauty Glanz" class="w-[75vw] h-auto md:w-[540px]" style="animation:logoPulse 4s ease-in-out infinite" fetchpriority="high">
-      <div class="w-[70%] h-[10px] mt-1 rounded-full" style="background:radial-gradient(ellipse, rgba(28,20,16,0.25) 0%, rgba(28,20,16,0.08) 60%, transparent 100%);filter:blur(14px)"></div>
+    <!-- Flower image: overlaps text, top layer -->
+    <div class="reveal -mt-24 md:mt-0 md:-ml-32 -mr-10 md:-mr-40 relative z-10 flex justify-end pointer-events-none">
+      <img src="flower.png" alt="Flower decoration" class="w-[90vw] max-w-[450px] md:w-[620px] md:max-w-none h-auto object-contain">
     </div>
   </div>
 </section>
 
-<div class="section-divider"><span>✦</span></div>
 
 <!-- INTRO -->
-<section class="py-20">
+<section class="py-20 bg-[#EDE5DA]">
   <div class="max-w-3xl mx-auto px-6 text-center">
     <h2 class="reveal font-heading text-4xl md:text-5xl text-rose mb-6 leading-snug" data-de="Schönheit, die von innen strahlt" data-ru="Красота, которая сияет изнутри" data-en="Beauty that radiates from within">Schönheit, die von innen strahlt</h2>
     <p class="reveal stagger-1 font-body text-espresso/55 text-base leading-relaxed max-w-xl mx-auto" data-de="Im Herzen Kassels verwandeln wir Ihre Schönheitswünsche in Realität. Unser Studio bietet Ihnen eine Oase der Ruhe, in der Präzision und Kreativität aufeinandertreffen — für Ergebnisse, die begeistern." data-ru="В самом сердце Касселя мы воплощаем ваши мечты о красоте в реальность. Наша студия — оазис спокойствия, где точность встречается с креативностью — для результатов, которые восхищают." data-en="In the heart of Kassel, we turn your beauty dreams into reality. Our studio offers you an oasis of calm where precision meets creativity — for results that inspire.">Im Herzen Kassels verwandeln wir Ihre Schönheitswünsche in Realität. Unser Studio bietet Ihnen eine Oase der Ruhe, in der Präzision und Kreativität aufeinandertreffen — für Ergebnisse, die begeistern.</p>
   </div>
 </section>
 
-<div class="section-divider"><span>✦</span></div>
+
 
 <!-- ABOUT -->
 <section id="about" class="py-16 md:py-24">
