@@ -140,10 +140,10 @@ select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
 </div>
 
 <!-- HERO -->
-<section class="min-h-screen flex items-center pt-20 pb-0 relative">
+<section class="min-h-screen flex items-center pt-20 pb-0 relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-[1fr_auto] gap-0 items-center relative">
     <!-- Text column -->
-    <div class="relative z-0 space-y-6 md:space-y-4">
+    <div class="relative z-10 space-y-6 md:space-y-4">
       <p class="reveal font-body text-rose tracking-[0.2em] uppercase text-sm font-bold mb-4 md:mb-0 parallax-text" id="heroSubtitle" data-de="Nagelstudio & Kosmetik" data-ru="Ногтевая студия и косметология" data-en="Nail Studio & Beauty">Nagelstudio & Kosmetik</p>
       <h1 class="reveal stagger-1 font-heading text-[22vw] sm:text-[10rem] md:text-[16rem] leading-[0.85] text-espresso -mt-2 parallax-text" id="heroTitle">Beauty<br><span class="text-rose italic">Glanz</span></h1>
       <p class="reveal stagger-2 font-body text-espresso/70 text-base max-w-md leading-relaxed mt-8 md:mt-0 parallax-text" id="heroDesc" data-de="Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit." data-ru="Профессиональный уход за красотой от мастера Анны — ваш путь к натуральной элегантности и вневременной красоте." data-en="Professional beauty care by master Anna — your path to natural elegance and timeless beauty.">Professionelle Schönheitspflege von Meisterin Anna — Ihr Weg zu natürlicher Eleganz und zeitloser Schönheit.</p>
@@ -703,7 +703,7 @@ function initObserver(){
 }
 
 buildAccordion();buildGallery();buildReviews();buildFaq();buildServiceSelect();buildTimeSlots();initObserver();
-// Setup Parallax Scroll Effect
+// Setup Cinematic Parallax Scroll Effect focusing on the Title
 function initParallax() {
   const subtitle = document.getElementById('heroSubtitle');
   const title = document.getElementById('heroTitle');
@@ -712,40 +712,47 @@ function initParallax() {
   const img = document.getElementById('heroImg');
   
   window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    
-    // Limits the parallax to the hero section area (e.g. up to 800px)
-    if (scrollY > 1000) return;
-    
-    // Move text up and fade out
-    const textTranslate = scrollY * 0.4;
-    const textOpacity = Math.max(0, 1 - scrollY / 500);
-    
-    if(subtitle) {
-      subtitle.style.transform = `translateY(-${scrollY * 0.2}px)`;
-      subtitle.style.opacity = textOpacity;
-    }
-    if(title) {
-      title.style.transform = `translateY(-${textTranslate}px)`;
-      title.style.opacity = textOpacity;
-    }
-    if(desc) {
-      desc.style.transform = `translateY(-${scrollY * 0.3}px)`;
-      desc.style.opacity = textOpacity;
-    }
-    if(btn) {
-      btn.style.transform = `translateY(-${scrollY * 0.15}px)`;
-      // keep the button slightly more visible longer
-      btn.style.opacity = Math.max(0, 1 - scrollY / 700);
-    }
-    
-    // Flower moves DOWN slightly (parallax effect), staying anchored towards the bottom
-    if(img) {
-      // By using positive translateY, the flower scrolls up slower than the page, keeping it closer to the bottom edge.
-      const imgTranslate = scrollY * 0.3; 
-      img.style.transform = `translateY(${imgTranslate}px)`;
-    }
-  });
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      if (scrollY > 1200) return;
+      
+      // Elements fade out very smoothly, without leaving an empty white void
+      const subtitleFade = Math.max(0, 1 - scrollY / 400);
+      const descFade = Math.max(0, 1 - scrollY / 600);
+      
+      if(subtitle) {
+        subtitle.style.transform = `translate3d(0, -${scrollY * 0.4}px, 0)`;
+        subtitle.style.opacity = subtitleFade;
+      }
+      if(title) {
+        // Title stays fully opaque for a very long time, popping to the foreground
+        // Z-index added in HTML is needed, but we can also ensure it scales cleanly.
+        const titleScale = 1 + scrollY * 0.0001; 
+        const titleFade = Math.max(0, 1 - scrollY / 900);
+        title.style.transform = `translate3d(0, -${scrollY * 0.2}px, 0) scale(${titleScale})`;
+        title.style.opacity = titleFade;
+      }
+      if(desc) {
+        desc.style.transform = `translate3d(0, -${scrollY * 0.3}px, 0)`;
+        desc.style.opacity = descFade;
+      }
+      if(btn) {
+        btn.style.transform = `translate3d(0, -${scrollY * 0.25}px, 0)`;
+        btn.style.opacity = subtitleFade;
+      }
+      
+      if(img) {
+        // Photo scales from its center visually, and fades out as it goes under
+        img.style.transformOrigin = 'center';
+        const imgTranslate = scrollY * 0.55; // Moves down relative to viewport -> stays behind
+        const imgScale = 1 + scrollY * 0.0006; // Scales up symmetrically
+        const imgOpacity = Math.max(0, 1 - scrollY / 700); 
+        // No rotation, just clean zooming and diving under the next block
+        img.style.transform = `translate3d(0, ${imgTranslate}px, 0) scale(${imgScale})`;
+        img.style.opacity = imgOpacity;
+      }
+    });
+  }, { passive: true });
 }
 initParallax();
 
