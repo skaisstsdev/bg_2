@@ -703,53 +703,60 @@ function initObserver(){
 }
 
 buildAccordion();buildGallery();buildReviews();buildFaq();buildServiceSelect();buildTimeSlots();initObserver();
-// Setup Cinematic Parallax Scroll Effect focusing on the Title
+// Cinematic Parallax: elements sink downward and dissolve
 function initParallax() {
   const subtitle = document.getElementById('heroSubtitle');
   const title = document.getElementById('heroTitle');
   const desc = document.getElementById('heroDesc');
   const btn = document.getElementById('heroBtn');
   const img = document.getElementById('heroImg');
-  
+
   window.addEventListener('scroll', () => {
     requestAnimationFrame(() => {
       const scrollY = window.scrollY;
       if (scrollY > 1200) return;
-      
-      // Elements fade out very smoothly, without leaving an empty white void
-      const subtitleFade = Math.max(0, 1 - scrollY / 400);
-      const descFade = Math.max(0, 1 - scrollY / 600);
-      
+
+      // Smooth easing factor for organic motion
+      const ease = (v) => v * v;
+
+      // Staggered fade-out ranges (subtitle fastest, title slowest)
+      const subtitleFade = Math.max(0, 1 - ease(scrollY / 350));
+      const titleFade    = Math.max(0, 1 - ease(scrollY / 600));
+      const descFade     = Math.max(0, 1 - ease(scrollY / 450));
+      const btnFade      = Math.max(0, 1 - ease(scrollY / 380));
+      const imgFade      = Math.max(0, 1 - ease(scrollY / 500));
+
+      // Subtitle — sinks down fastest
       if(subtitle) {
-        subtitle.style.transform = `translate3d(0, -${scrollY * 0.4}px, 0)`;
+        subtitle.style.transform = `translate3d(0, ${scrollY * 0.5}px, 0)`;
         subtitle.style.opacity = subtitleFade;
       }
+
+      // Title — sinks slowly with subtle scale-up for cinematic depth
       if(title) {
-        // Title stays fully opaque for a very long time, popping to the foreground
-        // Z-index added in HTML is needed, but we can also ensure it scales cleanly.
-        const titleScale = 1 + scrollY * 0.0001; 
-        const titleFade = Math.max(0, 1 - scrollY / 900);
-        title.style.transform = `translate3d(0, -${scrollY * 0.2}px, 0) scale(${titleScale})`;
+        const titleScale = 1 + scrollY * 0.00015;
+        title.style.transform = `translate3d(0, ${scrollY * 0.25}px, 0) scale(${titleScale})`;
         title.style.opacity = titleFade;
       }
+
+      // Description — moderate sink speed
       if(desc) {
-        desc.style.transform = `translate3d(0, -${scrollY * 0.3}px, 0)`;
+        desc.style.transform = `translate3d(0, ${scrollY * 0.4}px, 0)`;
         desc.style.opacity = descFade;
       }
+
+      // Button — drifts down
       if(btn) {
-        btn.style.transform = `translate3d(0, -${scrollY * 0.25}px, 0)`;
-        btn.style.opacity = subtitleFade;
+        btn.style.transform = `translate3d(0, ${scrollY * 0.35}px, 0)`;
+        btn.style.opacity = btnFade;
       }
-      
+
+      // Image — gentle sink with soft zoom
       if(img) {
-        // Photo scales from its center visually, and fades out as it goes under
         img.style.transformOrigin = 'center';
-        const imgTranslate = scrollY * 0.55; // Moves down relative to viewport -> stays behind
-        const imgScale = 1 + scrollY * 0.0006; // Scales up symmetrically
-        const imgOpacity = Math.max(0, 1 - scrollY / 700); 
-        // No rotation, just clean zooming and diving under the next block
-        img.style.transform = `translate3d(0, ${imgTranslate}px, 0) scale(${imgScale})`;
-        img.style.opacity = imgOpacity;
+        const imgScale = 1 + scrollY * 0.0005;
+        img.style.transform = `translate3d(0, ${scrollY * 0.45}px, 0) scale(${imgScale})`;
+        img.style.opacity = imgFade;
       }
     });
   }, { passive: true });
