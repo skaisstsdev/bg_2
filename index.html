@@ -202,7 +202,7 @@ select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
     </div>
 
     <!-- Cutout Photo, heavily enlarged and overlapping -->
-    <div class="w-full max-w-[800px] flex justify-center mt-0 -mb-16 sm:-mb-20 md:-mb-32 relative z-20">
+    <div id="aboutPhotoWrap" class="w-full max-w-[800px] flex justify-center mt-0 -mb-16 sm:-mb-20 md:-mb-32 relative z-20">
       
       <!-- Animated Lines UNDER Anna's Photo -->
       <div class="absolute bottom-0 w-[150%] md:w-[120%] h-[55vh] sm:h-[70vh] md:h-[95vh] -z-10 flex items-end justify-center pointer-events-none opacity-80 left-1/2 -translate-x-1/2">
@@ -790,28 +790,38 @@ function initParallax() {
         const imgFade      = Math.max(0, 1 - ease(scrollY / 500));
 
         if(subtitle) {
-          subtitle.style.transform = `translate3d(0, ${scrollY * 0.5}px, 0)`;
-          subtitle.style.opacity = subtitleFade;
+          subtitle.style.transform = `translate3d(0, ${scrollY * 0.3}px, 0)`;
         }
         if(title) {
-          const titleScale = 1 + scrollY * 0.00015;
-          title.style.transform = `translate3d(0, ${scrollY * 0.25}px, 0) scale(${titleScale})`;
-          title.style.opacity = titleFade;
+          title.style.transform = `translate3d(0, ${scrollY * 0.3}px, 0)`;
         }
         if(desc) {
-          desc.style.transform = `translate3d(0, ${scrollY * 0.4}px, 0)`;
-          desc.style.opacity = descFade;
+          desc.style.transform = `translate3d(0, ${scrollY * 0.3}px, 0)`;
         }
         if(btn) {
-          btn.style.transform = `translate3d(0, ${scrollY * 0.35}px, 0)`;
-          btn.style.opacity = btnFade;
+          btn.style.transform = `translate3d(0, ${scrollY * 0.3}px, 0)`;
         }
         if(img) {
           img.style.transformOrigin = 'center';
           const imgScale = 1 + scrollY * 0.0005;
           img.style.transform = `translate3d(0, ${scrollY * 0.45}px, 0) scale(${imgScale})`;
-          img.style.opacity = imgFade;
         }
+      }
+
+      // --- ABOUT SECTION PARALLAX ---
+      const aboutWrap = document.getElementById('aboutPhotoWrap');
+      if (aboutWrap) {
+        const rect = aboutWrap.getBoundingClientRect();
+        const winH = window.innerHeight;
+        // Progress: 0 when element enters viewport, 1 when it leaves top
+        const progress = Math.max(0, Math.min(1, (winH - rect.top) / (winH + rect.height)));
+        // Only start effect after element is ~60% into view
+        const fadeStart = 0.55;
+        const fadeProgress = Math.max(0, (progress - fadeStart) / (1 - fadeStart));
+        const translateY = fadeProgress * 140; // max 140px downward
+        const scale = 1 - fadeProgress * 0.04; // subtle shrink
+        aboutWrap.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`;
+        aboutWrap.style.transition = 'none';
       }
 
     });
