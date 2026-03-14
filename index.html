@@ -158,22 +158,59 @@ select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
 
 
 <!-- INTRO -->
-<section class="py-20 bg-[#EDE5DA] relative z-20">
-  <div class="max-w-3xl mx-auto px-6 text-center">
-    <h2 class="reveal font-heading text-4xl md:text-5xl text-rose mb-6 leading-snug" data-de="Schönheit, die von innen strahlt" data-ru="Красота, которая сияет изнутри" data-en="Beauty that radiates from within">Schönheit, die von innen strahlt</h2>
-    <p class="reveal stagger-1 font-body text-espresso/55 text-base leading-relaxed max-w-xl mx-auto" data-de="Im Herzen Kassels verwandeln wir Ihre Schönheitswünsche in Realität. Unser Studio bietet Ihnen eine Oase der Ruhe, in der Präzision und Kreativität aufeinandertreffen — für Ergebnisse, die begeistern." data-ru="В самом сердце Касселя мы воплощаем ваши мечты о красоте в реальность. Наша студия — оазис спокойствия, где точность встречается с креативностью — для результатов, которые восхищают." data-en="In the heart of Kassel, we turn your beauty dreams into reality. Our studio offers you an oasis of calm where precision meets creativity — for results that inspire.">Im Herzen Kassels verwandeln wir Ihre Schönheitswünsche in Realität. Unser Studio bietet Ihnen eine Oase der Ruhe, in der Präzision und Kreativität aufeinandertreffen — für Ergebnisse, die begeistern.</p>
+<section id="intro" class="py-24 md:py-32 bg-[#EDE5DA] relative z-20 overflow-hidden flex items-center">
+  
+  <!-- hands2.png (Left, top) -> Anchored to edge, scaled up for depth -->
+  <img src="hands2.png" alt="Hands 2" id="introImgLeft" class="absolute top-12 md:top-24 left-0 w-48 sm:w-64 md:w-80 lg:w-[400px] xl:w-[480px] object-contain object-left pointer-events-none mix-blend-multiply opacity-95 z-30">
+  
+  <!-- hands1.png (Right, bottom) -> Anchored to edge, scaled up for depth -->
+  <img src="hands1.png" alt="Hands 1" id="introImgRight" class="absolute bottom-12 md:bottom-24 right-0 w-48 sm:w-64 md:w-80 lg:w-[400px] xl:w-[480px] object-contain object-right pointer-events-none mix-blend-multiply opacity-95 z-30">
+
+  <div class="max-w-4xl mx-auto px-6 text-center relative z-10 py-12 md:py-0">
+    <h2 id="introTitle" class="reveal font-heading text-4xl md:text-5xl lg:text-6xl text-rose mb-6 leading-snug" data-de="Schönheit, die von innen strahlt" data-ru="Красота, которая сияет изнутри" data-en="Beauty that radiates from within">Schönheit, die von innen strahlt</h2>
+    <p id="introDesc" class="reveal stagger-1 font-body text-espresso/55 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto" data-de="Im Herzen Kassels verwandeln wir Ihre Schönheitswünsche in Realität. Unser Studio bietet Ihnen eine Oase der Ruhe, in der Präzision und Kreativität aufeinandertreffen — für Ergebnisse, die begeistern." data-ru="В самом сердце Касселя мы воплощаем ваши мечты о красоте в реальность. Наша студия — оазис спокойствия, где точность встречается с креативностью — для результатов, которые восхищают." data-en="In the heart of Kassel, we turn your beauty dreams into reality. Our studio offers you an oasis of calm where precision meets creativity — for results that inspire.">Im Herzen Kassels verwandeln wir Ihre Schönheitswünsche in Realität. Unser Studio bietet Ihnen eine Oase der Ruhe, in der Präzision und Kreativität aufeinandertreffen — für Ergebnisse, die begeistern.</p>
   </div>
 </section>
 
 
 
 <!-- ABOUT -->
-<section id="about" class="py-16 md:py-24">
-  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-[280px_1fr] gap-14 items-center">
-    <div class="reveal-left flex justify-center">
-      <img src="anna.jpg" alt="Anna" class="w-64 h-80 object-cover rounded-3xl shadow-lg border border-cream-dark/30">
-    </div>
-    <div class="space-y-6">
+<section id="about" class="py-16 md:py-24 overflow-hidden">
+  <!-- Elegant flowing line background -->
+  <div class="absolute inset-0 -z-10 overflow-hidden flex items-center justify-center pointer-events-none opacity-60">
+    <svg class="w-full h-[150%] object-cover min-w-[1200px]" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-100 600 C300 800 600 200 1000 400 C1300 550 1500 300 1600 400" stroke="url(#lineGrad1)" stroke-width="2" stroke-linecap="round">
+        <animate attributeName="d" dur="15s" repeatCount="indefinite" values="M-100 600 C300 800 600 200 1000 400 C1300 550 1500 300 1600 400;M-100 500 C400 700 500 300 1100 300 C1400 300 1500 400 1600 500;M-100 600 C300 800 600 200 1000 400 C1300 550 1500 300 1600 400"/>
+      </path>
+      <path d="M-50 400 C200 200 800 700 1200 300 C1400 100 1500 200 1600 250" stroke="url(#lineGrad2)" stroke-width="1" stroke-linecap="round" opacity="0.8">
+        <animate attributeName="d" dur="20s" repeatCount="indefinite" values="M-50 400 C200 200 800 700 1200 300 C1400 100 1500 200 1600 250;M-50 300 C300 150 700 800 1100 400 C1300 150 1500 150 1600 200;M-50 400 C200 200 800 700 1200 300 C1400 100 1500 200 1600 250"/>
+      </path>
+      <path d="M0 700 C400 500 700 600 1000 200 C1200 -50 1400 100 1550 300" stroke="url(#lineGrad3)" stroke-width="3" stroke-linecap="round" opacity="0.6">
+        <animate attributeName="d" dur="18s" repeatCount="indefinite" values="M0 700 C400 500 700 600 1000 200 C1200 -50 1400 100 1550 300;M0 600 C500 400 600 700 1100 300 C1300 0 1450 150 1550 200;M0 700 C400 500 700 600 1000 200 C1200 -50 1400 100 1550 300"/>
+      </path>
+      <defs>
+        <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#C4826A" stop-opacity="0.1"/>
+          <stop offset="50%" stop-color="#C4826A" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#d9a895" stop-opacity="0.1"/>
+        </linearGradient>
+        <linearGradient id="lineGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#a8694f" stop-opacity="0.2"/>
+          <stop offset="50%" stop-color="#C4826A" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#E8DFD4" stop-opacity="0.1"/>
+        </linearGradient>
+        <linearGradient id="lineGrad3" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#E8DFD4" stop-opacity="0.2"/>
+          <stop offset="50%" stop-color="#d9a895" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#C4826A" stop-opacity="0.1"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-6 relative z-10 flex flex-col items-center">
+    <!-- Text content centered ABOVE -->
+    <div class="max-w-2xl mx-auto text-center space-y-6 mb-12 md:mb-16">
       <p class="reveal font-body text-rose tracking-[0.2em] uppercase text-xs font-bold" data-de="Über mich" data-ru="Обо мне" data-en="About me">Über mich</p>
       <h2 class="reveal stagger-1 font-heading text-4xl md:text-5xl text-espresso" data-de="Meisterin Anna" data-ru="Мастер Анна" data-en="Master Anna">Meisterin Anna</h2>
       <p class="reveal stagger-2 font-body text-espresso/70 leading-relaxed" data-de="Mit über 14 Jahren Erfahrung in der Schönheitsbranche bringe ich Leidenschaft und Präzision in jede Behandlung. Mein Ziel ist es, Ihre natürliche Schönheit zu unterstreichen und Ihnen ein Erlebnis zu schenken, das Sie strahlen lässt." data-ru="С более чем 14-летним опытом в индустрии красоты я привношу страсть и точность в каждую процедуру. Моя цель — подчеркнуть вашу естественную красоту и подарить вам опыт, который заставит вас сиять." data-en="With over 14 years of experience in the beauty industry, I bring passion and precision to every treatment. My goal is to highlight your natural beauty and give you an experience that makes you glow.">Mit über 14 Jahren Erfahrung in der Schönheitsbranche bringe ich Leidenschaft und Präzision in jede Behandlung. Mein Ziel ist es, Ihre natürliche Schönheit zu unterstreichen und Ihnen ein Erlebnis zu schenken, das Sie strahlen lässt.</p>
@@ -183,6 +220,22 @@ select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
         <div class="text-center p-4 rounded-2xl bg-cream"><p class="font-heading text-3xl text-rose">20+</p><p class="font-body text-xs text-espresso/60 mt-1" data-de="Behandlungen" data-ru="Процедур" data-en="Treatments">Behandlungen</p></div>
       </div>
     </div>
+
+    <!-- Cutout Photo, heavily enlarged and overlapping -->
+    <div class="w-full flex justify-center mt-4 -mb-24 md:-mb-32 relative z-20">
+      <img src="anna.png" alt="Anna" class="reveal w-auto h-[65vh] sm:h-[75vh] md:h-[85vh] object-contain object-bottom pointer-events-none origin-bottom hover:scale-105 transition-transform duration-700">
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<!-- Added background color and extra top padding to accommodate overlapping photo -->
+<section id="gallery" class="py-16 md:py-24 pt-24 md:pt-32 bg-[#EDE5DA] relative z-10">
+  <div class="max-w-6xl mx-auto px-6">
+    <p class="reveal text-center font-body text-rose tracking-[0.2em] uppercase text-xs font-bold mb-3" data-de="Galerie" data-ru="Галерея" data-en="Gallery">Galerie</p>
+    <h2 class="reveal stagger-1 text-center font-heading text-4xl md:text-5xl text-espresso mb-10" data-de="Unsere Arbeiten" data-ru="Наши работы" data-en="Our Work">Unsere Arbeiten</h2>
+    <div class="reveal stagger-2 flex flex-wrap justify-center gap-3 mb-12" id="categoryPills"></div>
+    <div id="galleryPanels" class="reveal stagger-3"></div>
   </div>
 </section>
 
@@ -194,18 +247,6 @@ select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
     <p class="reveal text-center font-body text-rose tracking-[0.2em] uppercase text-xs font-bold mb-3" data-de="Leistungen & Preise" data-ru="Услуги и цены" data-en="Services & Prices">Leistungen & Preise</p>
     <h2 class="reveal stagger-1 text-center font-heading text-4xl md:text-5xl text-espresso mb-14" data-de="Unsere Behandlungen" data-ru="Наши процедуры" data-en="Our Treatments">Unsere Behandlungen</h2>
     <div class="space-y-4" id="accordionContainer"></div>
-  </div>
-</section>
-
-<div class="section-divider"><span>✦</span></div>
-
-<!-- GALLERY -->
-<section id="gallery" class="py-16 md:py-24">
-  <div class="max-w-6xl mx-auto px-6">
-    <p class="reveal text-center font-body text-rose tracking-[0.2em] uppercase text-xs font-bold mb-3" data-de="Galerie" data-ru="Галерея" data-en="Gallery">Galerie</p>
-    <h2 class="reveal stagger-1 text-center font-heading text-4xl md:text-5xl text-espresso mb-10" data-de="Unsere Arbeiten" data-ru="Наши работы" data-en="Our Work">Unsere Arbeiten</h2>
-    <div class="reveal stagger-2 flex flex-wrap justify-center gap-3 mb-12" id="categoryPills"></div>
-    <div id="galleryPanels" class="reveal stagger-3"></div>
   </div>
 </section>
 
@@ -714,50 +755,41 @@ function initParallax() {
   window.addEventListener('scroll', () => {
     requestAnimationFrame(() => {
       const scrollY = window.scrollY;
-      if (scrollY > 1200) return;
-
-      // Smooth easing factor for organic motion
       const ease = (v) => v * v;
 
-      // Staggered fade-out ranges (subtitle fastest, title slowest)
-      const subtitleFade = Math.max(0, 1 - ease(scrollY / 350));
-      const titleFade    = Math.max(0, 1 - ease(scrollY / 600));
-      const descFade     = Math.max(0, 1 - ease(scrollY / 450));
-      const btnFade      = Math.max(0, 1 - ease(scrollY / 380));
-      const imgFade      = Math.max(0, 1 - ease(scrollY / 500));
+      // --- HERO SECTION PARALLAX ---
+      if (scrollY <= 1200) {
+        const subtitleFade = Math.max(0, 1 - ease(scrollY / 350));
+        const titleFade    = Math.max(0, 1 - ease(scrollY / 600));
+        const descFade     = Math.max(0, 1 - ease(scrollY / 450));
+        const btnFade      = Math.max(0, 1 - ease(scrollY / 380));
+        const imgFade      = Math.max(0, 1 - ease(scrollY / 500));
 
-      // Subtitle — sinks down fastest
-      if(subtitle) {
-        subtitle.style.transform = `translate3d(0, ${scrollY * 0.5}px, 0)`;
-        subtitle.style.opacity = subtitleFade;
+        if(subtitle) {
+          subtitle.style.transform = `translate3d(0, ${scrollY * 0.5}px, 0)`;
+          subtitle.style.opacity = subtitleFade;
+        }
+        if(title) {
+          const titleScale = 1 + scrollY * 0.00015;
+          title.style.transform = `translate3d(0, ${scrollY * 0.25}px, 0) scale(${titleScale})`;
+          title.style.opacity = titleFade;
+        }
+        if(desc) {
+          desc.style.transform = `translate3d(0, ${scrollY * 0.4}px, 0)`;
+          desc.style.opacity = descFade;
+        }
+        if(btn) {
+          btn.style.transform = `translate3d(0, ${scrollY * 0.35}px, 0)`;
+          btn.style.opacity = btnFade;
+        }
+        if(img) {
+          img.style.transformOrigin = 'center';
+          const imgScale = 1 + scrollY * 0.0005;
+          img.style.transform = `translate3d(0, ${scrollY * 0.45}px, 0) scale(${imgScale})`;
+          img.style.opacity = imgFade;
+        }
       }
 
-      // Title — sinks slowly with subtle scale-up for cinematic depth
-      if(title) {
-        const titleScale = 1 + scrollY * 0.00015;
-        title.style.transform = `translate3d(0, ${scrollY * 0.25}px, 0) scale(${titleScale})`;
-        title.style.opacity = titleFade;
-      }
-
-      // Description — moderate sink speed
-      if(desc) {
-        desc.style.transform = `translate3d(0, ${scrollY * 0.4}px, 0)`;
-        desc.style.opacity = descFade;
-      }
-
-      // Button — drifts down
-      if(btn) {
-        btn.style.transform = `translate3d(0, ${scrollY * 0.35}px, 0)`;
-        btn.style.opacity = btnFade;
-      }
-
-      // Image — gentle sink with soft zoom
-      if(img) {
-        img.style.transformOrigin = 'center';
-        const imgScale = 1 + scrollY * 0.0005;
-        img.style.transform = `translate3d(0, ${scrollY * 0.45}px, 0) scale(${imgScale})`;
-        img.style.opacity = imgFade;
-      }
     });
   }, { passive: true });
 }
