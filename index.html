@@ -93,7 +93,18 @@ select.form-input{appearance:none;-webkit-appearance:none;background-image:url("
 select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
 </style>
 </head>
-<body class="overflow-x-hidden max-w-[100vw]">
+<body class="overflow-x-hidden max-w-[100vw] overflow-hidden">
+
+<!-- PRELOADER -->
+<div id="preloader" class="fixed inset-0 z-[10000] bg-[#F5EFE8] flex flex-col items-center justify-center transition-opacity duration-700">
+  <div class="relative w-16 h-16 mb-6">
+    <!-- Spinning outer ring -->
+    <div class="absolute inset-0 rounded-full border-t-2 border-r-2 border-espresso opacity-70 animate-spin"></div>
+    <!-- Inner pulsing dot -->
+    <div class="absolute inset-0 m-auto w-3 h-3 bg-rose rounded-full animate-pulse"></div>
+  </div>
+  <div class="font-heading text-lg text-espresso tracking-[0.3em] uppercase opacity-80 animate-pulse">Beauty Glanz</div>
+</div>
 
 <!-- LANGUAGE SWITCHER -->
 <div class="lang-switcher" id="langSwitcher">
@@ -399,6 +410,17 @@ select.form-input option{padding:12px;font-family:'DM Sans',sans-serif}
 </footer>
 
 <script>
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    preloader.style.opacity = '0';
+    setTimeout(() => {
+      preloader.style.display = 'none';
+      document.body.classList.remove('overflow-hidden');
+    }, 700); // Wait for transition to finish
+  }
+});
+
 const LANGS = ['de','ru','en'];
 const LANG_LABELS = {de:'RU',ru:'EN',en:'DE'};
 let currentLang = 'de';
